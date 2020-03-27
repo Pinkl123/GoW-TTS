@@ -12,7 +12,7 @@ function dump(t,i)
         print(i,v)
         v=t[v]
         if type(v)=="table" and not seen[v] then
-            dump(v,i.." ") --Вау тут можно писать коменты, а я и не знал
+            dump(v,i.." ")
         end
     end
 end
