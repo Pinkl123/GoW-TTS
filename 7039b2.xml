@@ -1,0 +1,14 @@
+<Defaults>
+  <Button scale="0.2 0.2 0.2" text="" value="false" width="270" height="210" onClick="toggleCheckBox" fontSize="180" textColor="#FFFFFF" color="#00000000"/>
+  <InputField scale="0.2 0.2 0.2" rotation="180 180 0" width="880" height="400" fontSize="250" color="#80808000" textColor="#FFFFFF" characterValidation="Decimal" textAlignment="MiddleCenter" onEndEdit="onEndEdit"/>
+</Defaults>
+
+<Button id="playerChar" position="218 18 -60"/>
+<Button id="hideBar" position="218 96 -60"/>
+<Button id="hideText" position="218 176 -60"/>
+<Button id="editText" position="218 250 -60"/>
+<Button id="showAll" position="650 0 -60" text="" value="true" width="1800" height="8300" onClick="toggleOnOff"/>
+<Button id="HideBars" position="-177 667 -60" width="4830" height="520" onClick="toggleHideBars"/>
+<InputField id="hp" position="-158 323 -60"/>
+<InputField id="mana" position="-158 400 -60"/>
+<InputField id="extra" position="-158 474 -60" text="0"/>

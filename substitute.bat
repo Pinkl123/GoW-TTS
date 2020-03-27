@@ -1,0 +1,1 @@
+call "ToolForTtsProject\ToolForTtsProject.exe" --substitute

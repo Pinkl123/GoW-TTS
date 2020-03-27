@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FsharpMyExtension</name></assembly>
+<members>
+<member name="M:Parser.Primitives2.choice``3(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpFunc{System.Tuple{Microsoft.FSharp.Collections.FSharpList{``0},``2},System.Tuple{System.Tuple{Microsoft.FSharp.Collections.FSharpList{``0},``2},FsharpMyExtension.Either.Either{System.Tuple{System.Boolean,FsharpMyExtension.Tree.Tree{Parser.Primitives2.T{``0}}},``1}}}})">
+<summary>
+ `Seq.reduce (&lt;|&gt;) xs` - optimise?
+</summary>
+</member>
+<member name="M:Parser.Primitives2.satisfym``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},System.String)">
+<summary>
+ Не знаю, противоречит ли оно главной концепции...
+</summary>
+</member>
+<member name="M:Parser.ParHtmlNode.isEmptyInnerText(HtmlAgilityPack.HtmlNode)">
+<summary>
+ empty or contains only System.Char.IsWhiteSpace
+</summary>
+</member>
+<member name="M:Print.escape2">
+<summary>
+**Description**
+ for @ string (&apos;&quot;&apos; -&gt; &apos;&quot;&quot;&apos;)
+</summary>
+</member>
+<member name="M:Print.escapens(System.String)">
+<summary>
+**Description**
+ escape &apos;\&apos; -&gt; &quot;\\&quot; | &apos;&quot;&apos; -&gt; &apos;\&quot;\&quot;&apos; and \n -&gt; &quot;\\n&quot; | \r -&gt; &quot;&quot;
+</summary>
+</member>
+<member name="M:Print.escapen">
+<summary>
+**Description**
+ escape &apos;\&apos; -&gt; &quot;\\&quot; | &apos;&quot;&apos; -&gt; &apos;\&quot;\&quot;&apos; and \n -&gt; &quot;\\n&quot; | \r -&gt; &quot;&quot;
+</summary>
+</member>
+<member name="M:Print.escape">
+<summary>
+**Description**
+ `escape &apos;\&apos; -&gt; &quot;\\\\&quot; | &apos;&quot;&apos; -&gt; &quot;\\\&quot;&quot;`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.ShowList.joinsEmpty(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.Char},Microsoft.FSharp.Collections.FSharpList{System.Char}})">
+<summary>
+ Соединяет строки с помощью разделителя.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.ShowList.joins(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.Char},Microsoft.FSharp.Collections.FSharpList{System.Char}},Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.Char},Microsoft.FSharp.Collections.FSharpList{System.Char}}})">
+<summary>
+ Соединяет строки с помощью разделителя. Пропускает пустые элементы.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.FSharpExt.curry``3">
+<summary>
+ (&lt;||)
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Pair.reduce``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},``0,``1)">
+<summary>
+ `curry`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.chunkBySizeRange``1(``0,System.Int32)">
+<summary>
+ ```fsharp
+ List.chunkBySize size [0..length - 1]
+ |&gt; List.map (on List.head List.last)
+ ```
+ `chunkBySizeRange 3 14 = [(0, 2); (3, 5); (6, 8); (9, 11); (12, 13)]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.splitIntoRange64``1(``0,System.Int64)">
+<summary>
+ `List.splitInto size [0..length - 1] |&gt; List.map (on List.head List.last)`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.splitIntoRange``1(``0,System.Int32)">
+<summary>
+ `List.splitInto size [0..length - 1] |&gt; List.map (on List.head List.last)`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.numerate``1(Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Core.FSharpFunc{``0,System.String}},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+**Description**
+ 
+ Цель: преобразовать элементы в строковое значение так, чтобы
+ после сортировки полученных строковых значений, последовательность
+ была такой же как у исходного списка.
+ 
+ Решение: в начале каждого элемента нумерацию в стиле:
+ &quot;01, 02,..., 10, 11,...&quot; и прибавить к этому по-умолчанию `sprintf &quot;_A&quot;`.
+ 
+**Parameters**
+  * `fn` - parameter of type `(&apos;a -&gt; string) option`
+  * `xs` - parameter of type `seq&lt;&apos;a&gt;`
+ 
+**Output Type**
+  * `seq&lt;&apos;a * string&gt;`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.circle``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+**Description**
+ 
+ `[1..3]` -&gt; `[1;2;3; 1;2;3; 1...]`
+ 
+**Parameters**
+  * `xs` - parameter of type `list&lt;&apos;a&gt;`
+ 
+ Why not `seq` in input? Because `seq` - potential infinity structure and
+ it `list` cache structure.
+ 
+**Output Type**
+  * `seq&lt;&apos;a&gt;`
+ 
+**Exceptions**
+ 
+ System.ArgumentException: Thrown when the list is empty.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.groupRep``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Группирует подряд повторяющиеся элементы с их количеством.
+ 
+ `f [2;3;3;6;4;5;6]` -&gt; `[(2, 1); (3, 2); (6, 1); (4, 1); (5, 1); (6, 1)]`
+ 
+ **Рекурсивно!**
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.groupBySeq``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+**Description**
+  * Последовательная группировка.
+  * `f (=) [1;2;1;1;3;3;4;4;5]` -&gt; `[[1]; [2]; [1; 1]; [3; 3]; [4; 4]; [5]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.trans3``1(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{``0}})">
+<summary>
+ попроще чем `trans`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.trans``1(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{``0}})">
+<summary>
+**Description**
+  * transpose matrix
+  * `[[1; 2; 3]; [4; 5; 6]; [7; 8; 9]]` -&gt; `[[1; 4; 7]; [2; 5; 8]; [3; 6; 9]]`
+  * `[[1; 2]; [3; 4]; [5; 6]]` -&gt; `[[1; 3; 5]; [2; 4; 6]]`
+**Parameters**
+  * `xss` - parameter of type `&apos;a list list`
+**Output Type**
+  * `&apos;a list list`
+**Exceptions**
+  * System.ArgumentException: Throw then the lists tail of `xss` has different lengths.
+  * trans [[1;2]; [3;4;5]] -&gt; [[1; 3]; [2; 4]]
+  * but trans [[1;2]; [3]] -&gt; Exception
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.transposeOpt``1(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{``0}})">
+<summary>
+**Description**
+ transpose lists:
+ ```fsharp
+ [[Some 1; Some 1;  Some 1]
+ [Some 2; Some 2;  Some 2]
+ [Some 3; Some 3;  Some 3]
+ [None;   Some 4;  Some 4]
+ [None;   Some 5;  Some 5]
+ [None;   Some 6;  None  ]
+ [None;   Some 7;  None  ]
+ [None;   Some 8;  None  ]
+ [None;   Some 9;  None  ]
+ [None;   Some 10; None  ]]
+ ```
+**Parameters**
+  * `xss` - parameter of type `&apos;a list list`
+
+**Output Type**
+  * `&apos;a option list list`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.truncList``1(System.Int32,Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+**Description**
+ * `truncList` 2 [1..5] -&gt; [[1; 2]; [3; 4]; [5]]
+ * `truncList` 3 [1..8] -&gt; [[1; 2; 3]; [4; 5; 6]; [7; 8]]
+**Parameters**
+  * `n` - parameter of type `int`
+  * `xs` - parameter of type `&apos;a list`
+
+**Output Type**
+  * `&apos;a list list`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.takeWhileRest``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean})">
+<summary>
+**Description**
+ * `takeWhileRest (fun x -&gt; x % 2 = 0) [2; 4; 6; 1; 2; 4] = ([2;4;6], [1;2;4])`
+**Parameters**
+  * `p` - parameter of type `&apos;a -&gt; bool`
+
+**Output Type**
+  * `&apos;a list -&gt; &apos;a list * &apos;a list`
+
+**Exceptions**
+ ?
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.takeWhile``2(``0)">
+<summary>
+ takeWhile = truncWhile ?
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.truncWhile``3(``0,``1)">
+<summary>
+ takeWhile = truncWhile ?
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.Alt.groupBySeq2``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ clear, but not safe
+</summary>
+</member>
+<member name="M:FsharpMyExtension.List.Alt.span``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ `f isEven [2;4;5;6;7]` -&gt; `([2; 4], [5; 6; 7])`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Either.EitherModule.seqEitherPseudo``2(FsharpMyExtension.Either.Either{``0,System.Collections.Generic.IEnumerable{FsharpMyExtension.Either.Either{``0,``1}}})">
+<summary>
+ не похоже на sequenceA, ибо `f&lt;t, f&lt;x&gt;&gt; -&gt; t&lt;f&lt;x&gt;&gt;` и результат не равен `fmap concat . sequenceA`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Either.EitherModule.either``3(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{``2,``1},FsharpMyExtension.Either.Either{``0,``2})">
+<summary>
+ Case analysis for the Either type. If the value is Left a, apply the first function to a; if it is Right b, apply the second function to b.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Either.EitherModule.mapBoth``4(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{``2,``3},FsharpMyExtension.Either.Either{``0,``2})">
+<summary>
+ either (f &gt;&gt; Left) (g &gt;&gt; Right)
+</summary>
+</member>
+<member name="M:FsharpMyExtension.String.createTable(System.Int32,Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{System.String}})">
+<summary>
+ Строит таблицу. Пример:
+ `table 4 [[&quot;a&quot;; &quot;bc&quot;; &quot;e&quot;]; [&quot;f&quot;; &quot;ghx&quot;]; [&quot;&quot;; &quot;&quot;; &quot;df&quot;]; [&quot;sdkjf&quot;; &quot;as&quot;; &quot;fkj&quot;; &quot;jaf&quot;]]`
+ Вернет:
+ ```
+ a        bc     e
+ f        ghx
+                 df
+ sdkjf    as     fkj    jaf
+ ```
+</summary>
+</member>
+<member name="M:FsharpMyExtension.String.last(System.String)">
+<summary>
+ **Exceptions**
+ * System.ArgumentException: The input string was empty.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.String.firstCapital(System.String)">
+<summary>
+ `TRACE` | `tRaCe` -&gt; `Trace`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.String.trim(System.String)">
+<summary>
+ remove all white-spaces leading and trailing
+</summary>
+</member>
+<member name="M:FsharpMyExtension.String.lines(System.String)">
+<summary>
+ split [|&quot;\r\n&quot;; &quot;\n&quot;; &quot;\r&quot;|] s
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Array.split``1(``0[],``0[])">
+<summary>
+ Ведет себя почти так же, как и `System.String.Split`, за исключением:
+ ```fsharp
+ let sep = &quot;&lt;&gt;&quot;
+ let str = &quot;&lt;&gt;&quot;
+ str.Split([|str|], System.StringSplitOptions.None) // -&gt; [|&quot;&quot;; &quot;&quot;|]
+ split (sep.ToCharArray()) (str.ToCharArray())
+ |&gt; Array.map System.String.Concat // -&gt; [|&quot;&quot;|]
+ ```
+ Еще пример:
+ ```fsharp
+ let sep = &quot;&lt;&gt;&quot;
+ let str = &quot;asdfg&lt;&gt; s aff&lt;&gt;a&lt;&gt;fa&lt;&gt;f&lt;&gt;&lt;&gt;dsf&quot;
+ split (sep.ToCharArray()) (str.ToCharArray())
+ |&gt; Array.map System.String.Concat
+ // -&gt; [|&quot;asdfg&quot;; &quot; s aff&quot;; &quot;a&quot;; &quot;fa&quot;; &quot;f&quot;; &quot;&quot;; &quot;dsf&quot;|]
+ ```
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Array.indexOf``1(``0[],System.Int32,``0[])">
+<summary>
+ Находит подмассив в массиве.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.ListZipper.ListZModule.concat``1(FsharpMyExtension.ListZipper.ListZ{Microsoft.FSharp.Collections.FSharpList{``0}})">
+<summary>
+**Description**
+
+**Exceptions**
+  * `System.ArgumentException`: Thrown when the `Current` does not have precisely one element.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.LazyTreeModule.pack``1(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Collections.FSharpList{``0}})">
+<summary>
+ Список списка преобразовывает в дерево при помощи `Seq.group`.
+ Пример, `[[1;3]; [2;3]; [1;2]]` -&gt; `[[1;2]; [1;3]; [2;3]]`
+ Наверное стоило сделать, чтобы запаковывалось последовательно.
+ В таком случае, выполнялось бы условие `pack &gt;&gt; unpack = pack`.
+ TODO: Привести примеры для пущей ясности.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.LazyTreeModule.unpack``1(System.Collections.Generic.IEnumerable{FsharpMyExtension.LazyTree{``0}})">
+ <summary> распаковать в вид [[1;2]; [1;3]...] </summary>
+</member>
+<member name="T:FsharpMyExtension.Combinatorics.UnionManual">
+<summary>
+ https://stackoverflow.com/questions/18613690/calculate-nth-multiset-combination-with-repetition-based-only-on-index
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.CombUnpacked.permRep``1(System.Int32,Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Перестановки с повторениями.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.CombUnpacked.permutation``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Перестановки без повторений в странном порядке:
+ 
+ `[1..3]` -&gt; `[[1; 2; 3]; [2; 1; 3]; [2; 3; 1]; [1; 3; 2]; [3; 1; 2]; [3; 2; 1]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.CombUnpacked.combAll``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ `[1..3]` -&amp;gt; `[[]; [1]; [1; 2]; [1; 2; 3]; [1; 3]; [2]; [2; 3]; [3]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.Comb.permRepLazy``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ `f [1;2]` -&amp;gt; `[[1;1]; [1;2]; [2;1]; [1;2]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.Comb.permutation``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Перестановка без повторений в алфавитном порядке:
+ `f [1..3]` -&amp;gt; `[[1; 2; 3]; [1; 3; 2]; [2; 1; 3]; [2; 3; 1]; [3; 1; 2]; [3; 2; 1]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.Comb.pow``2(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Произведение списков:
+ f `[[&apos;1&apos;..&apos;2&apos;]; [&apos;a&apos;..&apos;c&apos;]]` -&amp;gt; `[[&apos;1&apos;; &apos;a&apos;]; [&apos;1&apos;; &apos;b&apos;]; [&apos;1&apos;; &apos;c&apos;]; [&apos;2&apos;; &apos;a&apos;]; [&apos;2&apos;; &apos;b&apos;]; [&apos;2&apos;; &apos;c&apos;]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.Comb.combRep``1(System.Int32,Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Сочетания с повторениями:
+ `f 2 [1..3]` -&amp;gt; `[[1; 1]; [1; 2]; [1; 3]; [2; 2]; [2; 3]; [3; 3]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.Comb.combRepLazy``1">
+<summary>
+ Бесконечные сочетания с повторениями:
+ 
+ `f [1..3]` -&amp;gt; (если отсеять до 2-ух в ширину) `[[1; 1]; [1; 2]; [1; 3]; [2; 2]; [2; 3]; [3; 3]]`
+ 
+ Бесконечная как в ширину, так и в длину.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.Comb.comb``1(System.Int32)">
+<summary>
+ Сочетания без повторений:
+ `f 2 [1..3]` -&gt; `[[1; 2]; [1; 3]; [2; 3]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Combinatorics.LazyTreeEmptyModule.unpack``1(System.Collections.Generic.IEnumerable{FsharpMyExtension.Combinatorics.LazyTreeEmpty{``0}})">
+<summary>
+ распаковать в вид `[[1;2]; [1;3]...]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Tree.Tree.pack``1(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{``0}})">
+ <summary>Запаковать [[1..3]; [2; 3]] в [Node (1,[Node (2,[Node (3,[])])]); Node (2,[Node (3,[])])] </summary>
+</member>
+<member name="M:FsharpMyExtension.Tree.Tree.unpack2``1(Microsoft.FSharp.Collections.FSharpList{FsharpMyExtension.Tree.Tree{``0}})">
+<summary>
+ `pow [[1;2];[1;2]] -&gt; [[1]; [1; 1]; [1; 2]; [2]; [2; 1]; [2; 2]]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Tree.Tree.unpack``1(Microsoft.FSharp.Collections.FSharpList{FsharpMyExtension.Tree.Tree{``0}})">
+<summary>
+ распаковать в вид [[1;2]; [1;3]...]
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Map.reducef2``3(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``2,``2}},``2,``0,Microsoft.FSharp.Collections.FSharpMap{``1,``2})">
+<summary>
+ reducef id (fun k v -&gt; k::v) [] Map.empty [1;2;2;3;4;5;-1] = map [(-1, [-1]); (1, [1]); (2, [2; 2]); (3, [3]); (4, [4]); (5, [5])]
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Map.reducef``3(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``2,``2}},``2)">
+<summary>
+ reducef id (fun k v -&gt; k::v) [] Map.empty [1;2;2;3;4;5;-1] = map [(-1, [-1]); (1, [1]); (2, [2; 2]); (3, [3]); (4, [4]); (5, [5])]
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Map.addOrMod``2(``0,``1,Microsoft.FSharp.Core.FSharpFunc{``1,``1},Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ жаль что нет встроенной реализации. А так, приходится дважды искать ключ, хотя можно было бы сначала найти (если есть) и заменить значение.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Graph.connectedComponents``1(Microsoft.FSharp.Collections.FSharpList{System.Tuple{``0,``0}})">
+<summary>
+ https://en.wikipedia.org/wiki/Connected_component_(graph_theory)
+ Имеется неориентированный граф, несвязный и, возможно, цикличный. Нужно перечислить все &quot;компоненты связности&quot;.
+ Зачем? Положим следующий список уравнений:
+ `[a = b; a = c; e = d; d = f;]`
+ Вдруг захотелось узнать, что `[[a = b = c]; [d = e = f]]` — этот алгоритм самое то для решения такой задачи.
+ Стоит ли говорить, что алгоритм крайне тяжелый?
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Graph.toAdjacencys``1(Microsoft.FSharp.Collections.FSharpList{System.Tuple{``0,``0}})">
+<summary>
+ Списки [инцидентности (Adjacency list)](https://ru.wikipedia.org/wiki/Список_смежности)
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Graph.group2.find``1(FsharpMyExtension.Tree.Tree{``0})">
+<summary>
+ Найти первый попавшийся узел, который содержит только листья.
+ `1, [2, [3]; 4, [5; 6]]` -&gt; `2, [3]`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.HtmlAgilityPackExt.HtmlNode.selectNodes(System.String,HtmlAgilityPack.HtmlNode)">
+<summary>
+**Description**
+
+ If `HtmlNode.SelectNodes` is nothing found, then he return `null`.
+
+**Exceptions**
+
+ `System.Xml.XPath.XPathException`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.HtmlAgilityPackExt.HtmlNode.selectSingle(System.String,HtmlAgilityPack.HtmlNode)">
+<summary>
+ **Exceptions**
+
+ `System.Xml.XPath.XPathException`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Reflection.Reflection.unionEnum``1">
+<summary>
+ Enumeration values of union. All values must be empty type.
+</summary>
+</member>
+<member name="P:FsharpMyExtension.Reflection.Reflection.getFnNamesFromModule">
+<summary>
+ **Description**
+ 
+ In module declared:
+ ```fsharp
+ type internal IMarker = interface end
+ let t = typeof&lt;IMarker&gt;.DeclaringType
+ ```
+ after that, send in this function `%ModuleName%.t`
+ 
+ **Output Type**
+  * `System.Type -&gt; values:string [] * functions:string []`
+  * `values` - function without arguments
+ 
+ **Exceptions**
+ `System.ArgumentException` if arg is not module
+</summary>
+</member>
+<member name="T:FsharpMyExtension.XmlBuilder.Node.TextStr">
+<summary>
+ При сохранении используется `XmlWriter.WriteString`, т.е. все управляемые символы экранируются.
+</summary>
+</member>
+<member name="T:FsharpMyExtension.XmlBuilder.Node.Text">
+<summary>
+ При сохранении воспринимается буквально: используется `XmlWriter.WriteRaw`
+</summary>
+</member>
+<member name="P:FsharpMyExtension.XmlBuilder.NodeModule.ofHtmlNode">
+<summary>
+ может выдать исключение, если агрумент `HtmlNodeType.Text` типа и при этом пуст или населен обилием `System.Char.IsWhiteSpace` символов.
+</summary>
+</member>
+<member name="P:FsharpMyExtension.XmlBuilder.NodeModule.sprintNodeXDT">
+<summary>
+ обязательно должно быть: `&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.XmlBuilder.NodeModule.sprintNodeXml(FsharpMyExtension.XmlBuilder.Node)">
+<summary>
+ в начало добавит `&lt;?xml version=&quot;1.0&quot;?&gt;`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.DateTime.daysStepToBound(System.Int32,System.Int32,System.DateTime)">
+<summary>
+**Description**
+  without init value!
+**Exceptions**
+ System.ArgumentOutOfRangeException: The resulting System.DateTime is less than System.DateTime.MinValue or greater than System.DateTime.MaxValue.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.DateTime.daysStep(System.Int32,System.DateTime)">
+<summary>
+ without init value!
+ bounds of System.DateTime.MinValue or System.DateTime.MaxValue
+</summary>
+</member>
+<member name="M:FsharpMyExtension.WebDownloader.tryPost(System.Text.Encoding,System.String,System.String)">
+<summary>
+ раньше стояла кодировка &quot;windows-1251&quot;
+</summary>
+</member>
+<member name="M:FsharpMyExtension.WebDownloader.getAsync(System.Text.Encoding,Microsoft.FSharp.Collections.FSharpList{System.String})">
+<summary>
+ CookieContainer небезопастно использовать в паралельных вычислениях. Что делать? Включил, но использовать на свой страх и риск.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.WebDownloader.DownThemAll.metalinkf(System.String,Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}})">
+<summary>
+ filepath -&gt; (path * url) list
+</summary>
+</member>
+<member name="M:FsharpMyExtension.WebDownloader.DownThemAll.metalink(System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String}})">
+<summary>
+ DownThemAll! 3.0v
+ (path * url) list
+</summary>
+</member>
+<member name="M:FsharpMyExtension.WebDownloaderParallel.download2(System.Int32,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Net.HttpWebRequest},System.Net.WebResponse)">
+<summary>
+ max 2046Mb
+ предполагается, что `Accept-Ranges` доступен.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.WebDownloaderParallel.downloadDefineLength(System.Int32,System.String)">
+<summary>
+ max 2046Mb
+</summary>
+</member>
+<member name="M:FsharpMyExtension.WebDownloaderParallel.download(System.Int32,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Net.HttpWebRequest},System.Int32)">
+<summary>
+ max 2046Mb
+ предполагается, что `Accept-Ranges` доступен.
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Numeric.PercentTypeModule.changeof(FsharpMyExtension.Numeric.RatBig,FsharpMyExtension.Numeric.RatBig)">
+<summary>
+ процент от имеющегося.
+ Например, `x = 30`, `count = 0.5` -&gt; `15`
+ `x = 30`, `count = 1.5` -&gt; `45`
+</summary>
+</member>
+<member name="T:FsharpMyExtension.FSharpJsonType.SerializeOption.OptionConverter">
+<summary>
+ Взято [отсюда](https://stackoverflow.com/a/29629215)
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Array2D.to2DArray(System.Int32,System.Int32)">
+<summary>
+ i / n, i % n
+ при `w = 3`:
+ `|0|1|2|3|4|5|`
+ `-&gt;`
+ `|0|1|2|`
+ `|3|4|5|`
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Array2D.to1DArray(System.Int32,System.Int32)">
+<summary>
+ n*i + j
+ Отображение двухмерного массива на одномерный.
+ при `w = 3`:
+ `|0|1|2|`
+ `|3|4|5|`
+ `-&gt; |0|1|2|3|4|5|`
+</summary>
+</member>
+<member name="P:FsharpMyExtension.Array2D.toBitmap">
+<summary>
+ default - Imaging.PixelFormat.Format32bppArgb
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Array2D.ofBitmapFast(System.Drawing.Bitmap)">
+<summary>
+ Подходит любой из:
+ Format16bppRgb555
+ Format16bppRgb565
+ Format24bppRgb
+ Format32bppRgb
+ Format16bppArgb1555
+ Format32bppPArgb
+ Format48bppRgb
+ Format64bppPArgb
+ Format32bppArgb
+ Format64bppArgb
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Bitmap.iteriP(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Drawing.Color,Microsoft.FSharp.Core.Unit}}})">
+<summary>
+ not working
+</summary>
+</member>
+<member name="M:FsharpMyExtension.File.getUniqFile(System.String,System.String)">
+<summary>
+ если на диске существует `dir + fileName`, тогда `dir + changeFileName fileName 0`
+ если и он существует, тогда `dir + changeFileName fileName 1`
+ ...
+ возвращает полный путь
+</summary>
+</member>
+<member name="M:FsharpMyExtension.Regex.matchOther(System.String)">
+<summary>
+ возвращает группу вхождений, кроме первой
+</summary>
+</member>
+<member name="M:Proc.startProcString(System.String,System.String)">
+<summary>
+ Выводит на консоль и одновременно в `string`
+</summary>
+</member>
+<member name="M:Proc.startProcSimple(System.String,System.String)">
+<summary>
+ Выводит на консоль
+</summary>
+</member>
+<member name="M:Proc.startProc(Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.Unit},System.String,System.String)">
+<summary>
+ запускает процесс и ждет его завершения.
+</summary>
+</member>
+</members>
+</doc>

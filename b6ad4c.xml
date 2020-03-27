@@ -1,0 +1,185 @@
+<Defaults>
+  <Button onClick="onClick" fontSize="80" fontStyle="Bold" textColor="#FFFFFF" color="#000000F0" />
+  <Text fontSize="80" fontStyle="Bold" color="#A3A3A3" />
+</Defaults>
+
+<Panel position="27 -97 -15" rotation="180 180 0" scale="0.197 0.15">
+  <VerticalLayout height="300">
+    <Panel id="EXPBar">
+      <ProgressBar id="EXPProg" visibility="" height="100" width="600" showPercentageText="false" color=""
+        percentage="100" opacity="0.5" fillImageColor="#270041"></ProgressBar>
+      <Text id="EXPText" visibility="" height="100" width="600" text="10/10"></Text>
+      <HorizontalLayout height="100" width="600">
+        <Button id="EXPEdit" color="#00000000"></Button>
+      </HorizontalLayout>
+    </Panel>
+  </VerticalLayout>
+</Panel>
+
+<Panel id="panel" position="158.5 -83 -15" rotation="180 180 0" scale="0.197 0.15">
+  <VerticalLayout height="300" spacing="123">
+
+    <Panel id="HPBar">
+      <ProgressBar id="HPProg" visibility="" height="100" width="600" showPercentageText="false" color=""
+        percentage="100" fillImageColor="#530000"></ProgressBar>
+      <Text id="HPText" visibility="" height="100" width="600" text="10/10"></Text>
+      <HorizontalLayout height="100" width="600">
+        <Button id="HPEdit" color="#00000000"></Button>
+      </HorizontalLayout>
+    </Panel>
+
+    <Panel id="MPBar">
+      <ProgressBar id="MPProg" visibility="" height="100" width="600" showPercentageText="false" color=""
+        percentage="100" fillImageColor="#000152"></ProgressBar>
+      <Text id="MPText" visibility="" height="100" width="600" text="10/10"></Text>
+      <HorizontalLayout height="100" width="600">
+        <Button id="MPEdit" color="#00000000"></Button>
+      </HorizontalLayout>
+    </Panel>
+
+    <Panel id="STABar" active="true">
+      <ProgressBar id="STAProg" visibility="" height="100" width="600" showPercentageText="false" color=""
+        percentage="100" fillImageColor="#737D00"></ProgressBar>
+      <Text id="STAText" visibility="" height="100" width="600" text="10/10"></Text>
+      <HorizontalLayout height="100" width="600">
+        <Button id="STAEdit" color="#00000000"></Button>
+      </HorizontalLayout>
+    </Panel>
+
+    <Panel id="FODBar" active="true">
+      <ProgressBar id="FODProg" visibility="" height="100" width="600" showPercentageText="false" color=""
+        percentage="100" fillImageColor="#005205"></ProgressBar>
+      <Text id="FODText" visibility="" height="100" width="600" text="10/10"></Text>
+      <HorizontalLayout height="100" width="600">
+        <Button id="FODEdit" color="#00000000"></Button>
+      </HorizontalLayout>
+    </Panel>
+  </VerticalLayout>
+</Panel>
+<Panel id="Stats">
+  <Panel position="185 -11 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="MDA" fontSize="45" height="100" width="600" text="123"></Text>
+  </Panel>
+  <Panel position="147 -11 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="PDA" fontSize="45" height="100" width="600" text="123"></Text>
+  </Panel>
+  <Panel position="185 17 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="PDF" fontSize="45" height="100" width="600" text="28"></Text>
+  </Panel>
+  <Panel position="147 17 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="MDF" fontSize="45" height="100" width="600" text="17"></Text>
+  </Panel>
+  <Panel position="207 51 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="STR" fontSize="65" height="100" width="600" text="20"></Text>
+  </Panel>
+  <Panel position="167 51 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="AGI" fontSize="65" height="100" width="600" text="19"></Text>
+  </Panel>
+  <Panel position="127 51 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="INT" fontSize="65" height="100" width="600" text="18"></Text>
+  </Panel>
+
+  <Panel position="207 82 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="PAT" fontSize="55" height="100" width="600" text="20"></Text>
+  </Panel>
+  <Panel position="167 82 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="MOV" fontSize="55" height="100" width="600" text="19"></Text>
+  </Panel>
+  <Panel position="127 82 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="MAT" fontSize="55" height="100" width="600" text="18"></Text>
+  </Panel>
+
+  <Panel position="207 112 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="STA" fontSize="55" height="100" width="600" text="20"></Text>
+  </Panel>
+  <Panel position="167 112 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="MAS" fontSize="55" height="100" width="600" text="19"></Text>
+  </Panel>
+  <Panel position="127 112 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="SPE" fontSize="55" height="100" width="600" text="18"></Text>
+  </Panel>
+  <Panel position="210 137 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="BOD" fontSize="40" height="100" width="600" text="20"></Text>
+  </Panel>
+  <Panel position="182 137 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="CRT" fontSize="40" height="100" width="600" text="19"></Text>
+  </Panel>
+  <Panel position="153 137 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="EVA" fontSize="40" height="100" width="600" text="18"></Text>
+  </Panel>
+  <Panel position="124 137 -15" rotation="180 180 0" height="100" width="825" scale="0.19 0.15">
+    <Text id="REA" fontSize="40" height="100" width="600" text="18"></Text>
+  </Panel>
+
+  <Panel id="HPpanel" active="False" position="158.5 -155 -82" rotation="120 180 0" scale="0.197 0.197">
+    <VerticalLayout height="150" width="600" spacing="10">
+      <HorizontalLayout spacing="10" minheight="200">
+        <Button id="ARMsub" minheight="100" text="◄"></Button>
+        <Button id="ARM" fontSize="60" text="" minwidth="300"></Button>
+        <Button id="ARMadd" minheight="100" text="►"></Button>
+      </HorizontalLayout>
+      <HorizontalLayout>
+        <Text fontSize="60">Урон:</Text>
+        <InputField id="HPinc" onEndEdit="onEndEdit" minwidth="120" minheight="100" fontSize="60" fontStyle="Bold"
+          text="1"></InputField>
+      </HorizontalLayout>
+      <HorizontalLayout minheight="200">
+        <Button id="PD" fontSize="52" text="Ф.урон" color="#000000F0"></Button>
+        <Button id="MD" fontSize="52" text="М.урон" color="#000000F0"></Button>
+        <Button id="CD" fontSize="52" text="Ч.урон" color="#000000F0"></Button>
+      </HorizontalLayout>
+    </VerticalLayout>
+  </Panel>
+
+  <Panel id="MPpanel" active="False" position="158.5 -118 -60" rotation="120 180 0" scale="0.197 0.197">
+    <VerticalLayout height="150" width="600" spacing="10">
+      <HorizontalLayout>
+        <Text fontSize="60">Значение:</Text>
+        <InputField id="MPinc" onEndEdit="onEndEdit" minwidth="120" minheight="100" fontSize="60" fontStyle="Bold"
+          text="1"></InputField>
+      </HorizontalLayout>
+      <HorizontalLayout minheight="200">
+        <Button id="MDi" fontSize="52" text="Потратить" color="#000000F0"></Button>
+      </HorizontalLayout>
+    </VerticalLayout>
+  </Panel>
+
+  <Panel id="ECDpanel" active="False" position="158.5 -106 -60" rotation="120 180 0" scale="0.197 0.197">
+    <VerticalLayout height="150" width="600" spacing="10">
+      <HorizontalLayout minheight="200">
+        <Button id="STAC" fontSize="40" text="Обнулить" color="#000000F0"></Button>
+      </HorizontalLayout>
+      <HorizontalLayout minheight="200">
+        <Button id="PATB" fontSize="40" text="Ф.аттака" color="#000000F0"></Button>
+        <Button id="MATB" fontSize="40" text="М.аттака" color="#000000F0"></Button>
+        <Button id="MOVB" fontSize="40" text="Шаг" color="#000000F0"></Button>
+      </HorizontalLayout>
+    </VerticalLayout>
+  </Panel>
+
+  <Panel id="FODpanel" active="False" position="158.5 -80 -60" rotation="120 180 0" scale="0.197 0.197">
+    <VerticalLayout height="150" width="600" spacing="10">
+      <HorizontalLayout>
+        <Text fontSize="60">Значение:</Text>
+        <InputField id="FDinc" onEndEdit="onEndEdit" minwidth="120" minheight="100" fontSize="60" fontStyle="Bold"
+          text="1"></InputField>
+      </HorizontalLayout>
+      <HorizontalLayout minheight="200">
+        <Button id="FDi" fontSize="52" text="Потратить" color="#000000F0"></Button>
+      </HorizontalLayout>
+    </VerticalLayout>
+  </Panel>
+
+  <Panel id="EXPpanel" active="False" position="27 -130 -60" rotation="120 180 0" scale="0.197 0.197">
+    <VerticalLayout height="150" width="600" spacing="10">
+      <HorizontalLayout>
+        <Text fontSize="60">Значение:</Text>
+        <InputField id="EXinc" onEndEdit="onEndEdit" minwidth="120" minheight="100" fontSize="60" fontStyle="Bold"
+          text="1"></InputField>
+      </HorizontalLayout>
+      <HorizontalLayout minheight="200">
+        <Button id="EXi" fontSize="52" text="Добавить" color="#000000F0"></Button>
+      </HorizontalLayout>
+    </VerticalLayout>
+  </Panel>
+</Panel>
