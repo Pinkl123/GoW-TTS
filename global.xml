@@ -1,1 +1,6 @@
-<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->
+<Defaults>
+    <Panel class="bordered"  color="FFFFFF" outline="#000000" outlineSize="1 -1"/>
+    <Panel class="notebook"  color="#8F8478" outline="#4444dd" outlineSize="2 -2"/>
+    <Text class="names" fontSize="16" fontStyle="Bold" color="#000000" />
+    <Text class="scores" fontSize="16" alignment="MiddleRight" color="#000000" />
+</Defaults>

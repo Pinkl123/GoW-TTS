@@ -9,7 +9,7 @@
       "URL": "http://cloud-3.steamusercontent.com/ugc/993513340528836579/C8CC80C66767752271BC7A4DA20F510CAC866CBC/"
     }
   ],
-  "Date": "3/28/2020 2:43:32 AM",
+  "Date": "3/28/2020 11:00:11 PM",
   "DecalPallet": [],
   "GameMode": "Poker",
   "Gravity": 0.5,
@@ -42,7 +42,7 @@
         "Color": "Black",
         "Transform": {
           "posX": -72.78446,
-          "posY": -6.365302,
+          "posY": -6.4749527,
           "posZ": -21.6527138,
           "rotX": 0.0,
           "rotY": -0.000402526377,
@@ -56,7 +56,7 @@
         "Color": "Black",
         "Transform": {
           "posX": 4.198513,
-          "posY": 1.3361392,
+          "posY": 1.22648954,
           "posZ": -25.1850758,
           "rotX": 0.0,
           "rotY": -0.000402526348,
@@ -70,14 +70,14 @@
         "Color": "Purple",
         "Transform": {
           "posX": -0.6561499,
-          "posY": 1.719913,
+          "posY": 1.61026335,
           "posZ": 0.241939038,
           "rotX": 0.0,
           "rotY": 8.163399,
           "rotZ": 0.0,
-          "scaleX": 2.39745927,
+          "scaleX": 2.39757061,
           "scaleY": 7.0,
-          "scaleZ": 3.06751347
+          "scaleZ": 3.067651
         }
       }
     ],
@@ -111,8 +111,8 @@
     "LutIndex": 0,
     "ReflectionIntensity": 1.0
   },
-  "LuaScript": "local seen={}\r\n\r\nfunction dump(t,i)\r\n    seen[t]=true\r\n    local s={}\r\n    local n=0\r\n    for k in pairs(t) do\r\n        n=n+1 s[n]=k\r\n    end\r\n    table.sort(s)\r\n    for k,v in ipairs(s) do\r\n        print(i,v)\r\n        v=t[v]\r\n        if type(v)==\"table\" and not seen[v] then\r\n            dump(v,i..\" \") -- и вновь вернем бесполезный комментарий\r\n        end\r\n    end\r\nend\r\n\r\n--[[ Lua code See documentation: https://api.tabletopsimulator.com/ --]]\r\n\r\n--[[ The osnLoad event is called after the game save finishes loading. --]]\r\nfunction onLoad()\r\n    -- print('onLoad!')\r\nend\r\n\r\n--[[ The onUpdate event is called once per frame. --]]\r\nfunction onUpdate()\r\n    --[[ print('onUpdate loop!') --]]\r\n    -- print(getGlobalScriptVar(\"stats\").MPC)\r\nend\r\n\r\n-- dump(_G, \"\")\r\n",
-  "LuaScriptState": "",
+  "LuaScript": "-- Bundled by luabundle {\"version\":\"1.5.0\"}\r\nlocal __bundle_require, __bundle_loaded, __bundle_register, __bundle_modules = (function(superRequire)\r\n  local loadingPlaceholder = {[{}] = true}\r\n\r\n  local register\r\n  local modules = {}\r\n\r\n  local require\r\n  local loaded = {}\r\n\r\n  register = function(name, body)\r\n    if not modules[name] then\r\n      modules[name] = body\r\n    end\r\n  end\r\n\r\n  require = function(name)\r\n    local loadedModule = loaded[name]\r\n\r\n    if loadedModule then\r\n      if loadedModule == loadingPlaceholder then\r\n        return nil\r\n      end\r\n    else\r\n      if not modules[name] then\r\n        if not superRequire then\r\n          local identifier = type(name) == \"string\" and '\"' .. name .. '\"' or tostring(name)\r\n          error(\"Tried to require \" .. identifier .. \", but no such module has been registered\")\r\n        else\r\n          return superRequire(name)\r\n        end\r\n      end\r\n\r\n      loaded[name] = loadingPlaceholder\r\n      loadedModule = modules[name](require, loaded, register, modules)\r\n      loaded[name] = loadedModule\r\n    end\r\n\r\n    return loadedModule\r\n  end\r\n\r\n  return require, loaded, register, modules\r\nend)(nil)\r\n__bundle_register(\r\n  \"__root\",\r\n  function(require, _LOADED, __bundle_register, __bundle_modules)\r\n    --[[\r\n      shell mod to test and share turnButton code\r\n    ]]\r\n    require(\"Lua/tools\")\r\n\r\n    --[[ The onUpdate event is called once per frame. --]]\r\n    -- function onUpdate()\r\n    --   --[[ print('onUpdate loop!') --]]\r\n    --   -- print(getGlobalScriptVar(\"stats\").MPC)\r\n    -- end\r\n    function onSave()\r\n      local stat = {\r\n        playing = playing,\r\n        tBSave = tB.save()\r\n      }\r\n      return JSON.encode(stat)\r\n    end\r\n\r\n    function onLoad(statstr)\r\n      math.randomseed(os.time()) -- non-repeatable randoms\r\n      game_status = JSON.decode(statstr)\r\n      if game_status then\r\n        playing = game_status.playing\r\n        tB.restore(game_status.tBSave)\r\n      else\r\n        playing = false\r\n      end\r\n      if playing then\r\n        tB.show({color = tB.curPlayer, text = \"End \" .. tB.curPlayer .. \"'s turn\"})\r\n      else\r\n        print(\"Not playing yet\")\r\n        local stuff = getAllObjects()\r\n        for i, o in ipairs(stuff) do\r\n          if o.tag == \"Generic\" then\r\n            -- if there is a noises, turnButton will use it.  most of my mods\r\n            -- gather this data about everything in the \"room\".\r\n            if o.getName() == \"Noises\" then\r\n              tB.noises = o.getGUID()\r\n            -- tB.button = tB.button or o.getGUID()\r\n            end\r\n          end\r\n          if o.tag == \"Tile\" then\r\n            if o.name == \"turnButton\" then\r\n              tB.button = o.getGUID()\r\n            end\r\n          end\r\n        end\r\n        tB.init(\"Black\")\r\n      end\r\n    end -- of onLoad\r\n\r\n    function onChat(what, who)\r\n      if what == \"\\\\q\" then\r\n        endGame()\r\n        return false\r\n      elseif what == \"\\\\p\" then -- force end of turn\r\n        tB.pass()\r\n        return false\r\n      elseif what == \"\\\\t\" then -- hide/show global turnButton display\r\n        tB.toggleGlobalPanel()\r\n        return false\r\n      elseif what == \"\\\\r\" then\r\n        tB.offset = {x = 220, y = 0}\r\n        tB.restore(tB.save())\r\n        tB.show(tB.curPlayer, \"End \" .. tB.curPlayer .. \"'s turn\")\r\n      end\r\n    end -- of onChat\r\n\r\n    function endGame()\r\n      print(\"game aborted\")\r\n      playing = false\r\n      tB.init()\r\n      onLoad(onSave())\r\n    end\r\n\r\n    function sayTo(who, what) -- lazy; not used in turnButton per se.\r\n      broadcastToAll(what, who)\r\n    end\r\n\r\n    require(\"Lua/turnButton\") -- require adds a \".ttslua\"\r\n    --------------------------------------------------------------------------------\r\n    -- these are called from the turn system if then exist\r\n    --------------------------------------------------------------------------------\r\n    function initGame()\r\n      -- your mod specific code here.\r\n      playing = true\r\n    end -- of initGame\r\n\r\n    --------------------------------------------------------------------------------\r\n    function onTurnStart()\r\n      -- your mod specific turn start actions here\r\n      sayTo(tB.curPlayer, tB.curPlayer .. \", it is your turn.\")\r\n      tB.playNoise(3) -- a rooster sound in my bundle.\r\n    end\r\n\r\n    function onTurnEnd()\r\n      -- your mod specific turn end actions here\r\n      sayTo(tB.curPlayer, tB.curPlayer .. \", your turn is ended.\")\r\n    end\r\n  end\r\n)\r\n__bundle_register(\r\n  \"Lua/turnButton\",\r\n  function(require, _LOADED, __bundle_register, __bundle_modules)\r\n    -------------------------------------------------------------\r\n    -- TurnButton declarations\r\n    -------------------------------------------------------------\r\n\r\n    -- UI work around declarations -- no post processing of UI data so have to use top level names\r\n    function tB_start(player, value, id)\r\n      tB.start(player, value, id)\r\n    end\r\n\r\n    function tB_endTurn(player, value, id)\r\n      tB.endTurn(player, value, id)\r\n    end\r\n\r\n    function tB_beginMoveButton(player, value, id)\r\n      tB.beginMoveButton(player, value, id)\r\n    end\r\n\r\n    function tB_endMoveUI(player, value, id)\r\n      tB.endMoveButton(player, value, id)\r\n    end\r\n\r\n    function tB_toggleGlobalPanel(player, value, id)\r\n      tB.toggleGlobalPanel(player, value, id)\r\n    end\r\n\r\n    ------------------------------------------------------------------------\r\n    -- required by turnButton, but might be duplicate\r\n\r\n    function deepCopy(original)\r\n      if type(original) ~= \"table\" then\r\n        return original\r\n      else\r\n        local copy = {}\r\n        for i, v in pairs(original) do\r\n          copy[i] = deepCopy(v)\r\n        end\r\n        return copy\r\n      end\r\n    end -- of deepCopy\r\n\r\n    function doNothing() -- UI click function REQUIRED by turnButton\r\n    end -- of doNothing\r\n    -------------------------------------------------------\r\n    -- everything else lives inside tB\r\n    -------------------------------------------------------\r\n    tB = {\r\n      UITable = {}, -- Global UI\r\n      UIIndex = 1,\r\n      UITrigger = false, -- make true to update Global UI with UITable\r\n      triggerIndex = nil,\r\n      curPlayer = \"Black\",\r\n      curIndex = 0,\r\n      order = {},\r\n      button = \"b7757c\", -- The noises object is as good as any to attact the turnButton\r\n      globalPanel = true,\r\n      offset = {x = -220, y = 0}, -- initial location of global panel relative to upper right screen corner\r\n      noises = \"b7757c\", -- assetBundle with some sounds -- overridden if another generic assetrbundle is named Noises -- we use index 1 and 3.\r\n      -- top level UI for turnButton\r\n      -- manage details of the on-screen turnButton here.\r\n      tbLayout = {\r\n        tag = \"Panel\",\r\n        attributes = {\r\n          id = \"turnButton\",\r\n          width = \"150\",\r\n          height = \"25\",\r\n          color = \"#444555\",\r\n          rectAlignment = \"UpperRight\",\r\n          offsetXY = \"-250 0\",\r\n          allowDragging = \"true\",\r\n          returnToOriginalPositionWhenReleased = \"false\",\r\n          onEndDrag = \"tB_endMoveButton\"\r\n        },\r\n        children = {\r\n          {\r\n            tag = \"Button\",\r\n            attributes = {\r\n              id = \"closeButton\",\r\n              width = \"20\",\r\n              height = \"20\",\r\n              rectAlignment = \"UpperRight\",\r\n              color = \"#990000\",\r\n              textColor = \"#FFFFFF\",\r\n              text = \"X\",\r\n              onClick = \"tB_toggleGlobalPanel\"\r\n            }\r\n          },\r\n          {\r\n            tag = \"Text\",\r\n            attributes = {\r\n              text = \"Turn Button\",\r\n              alignment = \"UpperLeft\",\r\n              fontSize = \"18\",\r\n              offsetXY = \"5 0\",\r\n              fontStyle = \"Bold\",\r\n              color = \"#FFFFFF\"\r\n            }\r\n          },\r\n          {\r\n            tag = \"GridLayout\",\r\n            attributes = {\r\n              id = \"orderList\",\r\n              columns = \"1\",\r\n              width = \"100%\",\r\n              cellsize = \"150 25\",\r\n              rectAlignment = \"TopCenter\",\r\n              offsetXY = \"0 -20\"\r\n            },\r\n            children = {}\r\n          }\r\n        }\r\n      },\r\n      -- top level UI for button; need to change to classical UI -- new UI interferes with TTS operations (UI eats clicks)\r\n      -- Edit this table to match your specific button; this is set up to work with the noise cube I am using.\r\n      buttonTable = {\r\n        width = 4500,\r\n        height = 800,\r\n        position = {0, 0.5, 0},\r\n        color = {0.6, 0.4, 0.3},\r\n        hover_color = {0.5, 0.5, 0.5},\r\n        press_color = {1, 1, 1},\r\n        label = \"Start the Game\",\r\n        font_size = 600,\r\n        font_color = {0, 0, 0},\r\n        click_function = \"tB_start\",\r\n        function_owner = Global\r\n      },\r\n      -- manage the look and feel of your player buttons here\r\n      globalXmlTable = {\r\n        tag = \"Button\",\r\n        attributes = {\r\n          id = \"playerButton\",\r\n          width = \"150\",\r\n          height = \"25\",\r\n          text = \"Start the Game\",\r\n          fontSize = \"20\",\r\n          textColor = \"Black\",\r\n          colors = \"#cccccc|#dddddd|#444444|#00000000\",\r\n          onClick = \"tB_start\"\r\n        }\r\n      },\r\n      -------------------------------------------------------\r\n      -- set up the buttons with \"start the game\".\r\n      init = function()\r\n        tB.UITable = UI.getXmlTable()\r\n        tB.UIIndex = #tB.UITable + 1\r\n        for i, item in ipairs(tB.UITable) do\r\n          if item.attributes.id == \"turnButton\" then\r\n            tB.UIIndex = i\r\n            break -- shouldn't ever be more than one.\r\n          end\r\n        end\r\n        -- kick off maintenance function to update once a second\r\n        tB.triggerIndex = Wait.time(tB.updateUI, 1, -1)\r\n        tB.show({color = \"Black\", text = \"Start the game\"})\r\n      end, -- of initTurns\r\n      updateUI = function()\r\n        if tB then\r\n          if tB.UITrigger then\r\n            UI.setXmlTable(tB.UITable)\r\n            tB.UITrigger = false\r\n          end\r\n        end\r\n      end,\r\n      -------------------------------------------------------\r\n      -- configure turnButton, then call initGame\r\n      -- currently initialize3s order to getSeatedPlayers()\r\n      start = function(p1, p2, p3) -- either obj, color, clicktype or player, value, id and value is nil in this app\r\n        local player = p1 -- screen UI click\r\n        log(p1)\r\n        log(p2)\r\n        log(p3)\r\n        if p3 ~= \"playerButton\" then -- button classic UI click\r\n          player = Player[p2]\r\n        end\r\n        broadcastToAll(\"Game started by \" .. player.color, player.color)\r\n        tB.order =\r\n          table.sort(\r\n          getSeatedPlayers(),\r\n          function(a, b)\r\n            return Player[a].getHandTransform().rotation.y < Player[b].getHandTransform().rotation.y\r\n          end\r\n        )\r\n        tB.tbLayout.attributes.height = tostring(25 * #tB.order + 25)\r\n        tB.curIndex = math.random(#tB.order)\r\n        tB.curPlayer = tB.order[tB.curIndex]\r\n        tB.globalXmlTable.attributes.onClick = \"tB_endTurn\"\r\n        broadcastToAll(\"Game started by \" .. player.color, player.color)\r\n        broadcastToAll(tB.curPlayer .. \", you are first.\", tB.curPlayer)\r\n        tB.show({color = tB.curPlayer, text = \"End \" .. tB.curPlayer .. \"'s turn\"})\r\n        tB.playNoise(1)\r\n        if initGame then\r\n          initGame(player)\r\n        end\r\n      end, -- end of startTurns\r\n      ----------------------------------------------------------------\r\n      -- display turnButtons\r\n      -- parameters are:\r\n      --  color = current player color in order, or \"Black\"\r\n      --  text = string to display in current player's button\r\n      --\r\n      --\r\n      show = function(params) -- display turnButtons\r\n        -- print(\"tB.show called\", \" \", params.color, \" \", params.text )\r\n        tB.buttonTable.font_color = params.color\r\n        tB.buttonTable.label = params.text\r\n        tB.buttonTable.click_function = \"tB_endTurn\"\r\n        if params.color == \"Black\" then\r\n          tB.buttonTable.click_function = \"tB_start\"\r\n          tB.globalXmlTable.attributes.onClick = \"tB_start\"\r\n          tB.globalXmlTable.attributes.textColor = \"Black\"\r\n          tB.globalXmlTable.attributes.text = params.text\r\n          tB.tbLayout.children[3].children = tB.globalXmlTable\r\n        else\r\n          tB.tbLayout.children[3].children = {}\r\n          for _, player in ipairs(tB.order) do\r\n            tB.globalXmlTable.attributes.textColor = player\r\n            if player == params.color then\r\n              tB.globalXmlTable.attributes.onClick = \"tB_endTurn\"\r\n              tB.globalXmlTable.attributes.text = params.text\r\n            else\r\n              tB.globalXmlTable.attributes.onClick = \"doNothing\"\r\n              tB.globalXmlTable.attributes.text = player\r\n            end\r\n            table.insert(tB.tbLayout.children[3].children, deepCopy(tB.globalXmlTable))\r\n          end\r\n        end\r\n\r\n        if tB.globalPanel then\r\n          -- log(string.format(\"offset: %8.2f %8.2f\", tB.offset.x, tB.offset.y))\r\n          -- log(tB.UIIndex)\r\n          tB.UITable[tB.UIIndex] = deepCopy(tB.tbLayout)\r\n        end\r\n        tB.UITrigger = true\r\n        local button = getObjectFromGUID(tB.button)\r\n        button.clearButtons()\r\n        button.createButton(tB.buttonTable)\r\n      end, -- of show\r\n      -- Return entry in order just after current player\r\n      next = function()\r\n        local ix = tB.curIndex + 1\r\n        if ix > #tB.order then\r\n          ix = 1\r\n        end\r\n        return tB.order[ix]\r\n      end,\r\n      -- Return entry in order just before current player\r\n      prev = function()\r\n        local ix = tB.curIndex - 1\r\n        if ix < 1 then\r\n          ix = #tB.order\r\n        end\r\n        return tB.order[ix]\r\n      end, -- of prev\r\n      -- force end of current player's turn bypassing rule that only current player may end hes or her turn.\r\n      pass = function()\r\n        tB.endTurn(nil)\r\n      end, -- of passTurn\r\n      -- Make it newPlayer's turn -- newPlayer is a color\r\n      set = function(newPlayer)\r\n        local p = tB.curPlayer\r\n        tB.curPlayer = newPlayer\r\n        for i, color in ipairs(tB.order) do\r\n          if color == tB.curPlayer then\r\n            broadcastToAll(tB.curPlayer .. \", it is your turn.\", tB.curPlayer)\r\n            tB.curIndex = i\r\n            tB.show({color = tB.curPlayer, text = \"End \" .. tB.curPlayer .. \"'s turn\"})\r\n            return\r\n          end\r\n        end\r\n        print(tB.curPlayer, \" is not in the player list (order)\")\r\n        tB.curPlayer = p\r\n      end, -- of setTurn\r\n      -- player clicked end turn\r\n      endTurn = function(p1, p2, p3)\r\n        --  log(p1) log(p2) log(p3)\r\n        local color = p2\r\n        if p3 == \"playerButton\" then -- from global UI\r\n          color = color.color\r\n        end\r\n        if color and color ~= tB.curPlayer then\r\n          broadcastToAll(\r\n            (color or \"nil\") .. \", You cannot end another player's turn (\" .. (tB.curPlayer or \"nil\") .. \")\",\r\n            {0.8, 0, 0}\r\n          )\r\n          return\r\n        end\r\n        if onTurnEnd then\r\n          onTurnEnd()\r\n        end -- call user turn end function\r\n        tB.curIndex = tB.curIndex + 1\r\n        if tB.curIndex > #tB.order then\r\n          tB.curIndex = 1\r\n        end\r\n        tB.curPlayer = tB.order[tB.curIndex]\r\n        tB.show({color = tB.curPlayer, text = \"End \" .. tB.curPlayer .. \"'s turn\"})\r\n        if onTurnStart then\r\n          onTurnStart()\r\n        end -- call user turn start function\r\n      end, -- of endTurn\r\n      -- Show or hide the global UI\r\n      toggleGlobalPanel = function()\r\n        tB.globalPanel = not tB.globalPanel\r\n        if tB.globalPanel then\r\n          Global.UI.show(\"turnButton\")\r\n        else\r\n          Global.UI.hide(\"turnButton\")\r\n        end\r\n        return tB.globalPanel\r\n      end, -- of toggleGlobalPanel\r\n      -----------------------------------------------------------------------\r\n      -- implements onSave and onLoad support\r\n      save = function()\r\n        local tBData = {\r\n          order = tB.order,\r\n          curIndex = tB.curIndex,\r\n          curPlayer = tB.curPlayer,\r\n          button = tB.noises, -- custom button later if we want\r\n          globalPanel = tB.globalPanel,\r\n          UITable = tB.UITable,\r\n          UIIndex = tB.UIIndex,\r\n          offset = tB.offset,\r\n          noises = tB.noises\r\n        }\r\n        return tBData\r\n      end, -- of save\r\n      restore = function(tBData)\r\n        if tBData then\r\n          for k, v in pairs(tBData) do\r\n            tB[k] = v\r\n          end\r\n        end\r\n        if tB.triggerIndex then\r\n          Wait.stop(tB.triggerIndex)\r\n        end\r\n        tB.triggerIndex = Wait.time(tB.updateUI, 1, -1)\r\n      end,\r\n      -------------------------------------------------------\r\n      -- Utility functions\r\n      -------------------------------------------------------\r\n      playNoise = function(index) -- play a sound if we can.\r\n        if tB.noises then\r\n          local obj = getObjectFromGUID(tB.noises)\r\n          obj.AssetBundle.playTriggerEffect(index)\r\n        end\r\n      end, -- of playNoise\r\n      -------------------------------------------------------\r\n      -- These functions are experimental and tempramental.\r\n      -- To position your turnButton dynamically, you need to...\r\n      -- 1.  use topDown camera\r\n      -- 2.  set view directly over center of table\r\n      -- 3. zoom untill table just fills screen vertically\r\n      -- 4. adjust x and y calculations.  Only constants should be changed.\r\n      -- 5 TEST and repeat :-)\r\n      -------------------------------------------------------\r\n\r\n      -------------------------------------------------------\r\n      -- complete drag response\r\n      endMoveUI = function(player, value, id)\r\n        local newPos = player.getPointerPosition() -- assumes topDown view on 26x15 viewport\r\n        log(string.format(\"endDrag: %8.2f %8.2f\", newPos.x, newPos.z))\r\n        local x = math.max(math.min((newPos.x - 26) * 35, 0), -1760)\r\n        local y = math.max(math.min((newPos.z - 16) * 35, 0), -1024)\r\n        log(string.format(\"%6.2f %6.2f -> %6.2f %6.2f\", tB.offset.x, tB.offset.y, x, y))\r\n        tB.offset = {x = x, y = y}\r\n        tB.tbLayout.attributes.offsetXY = string.format(\"%d %d\", tB.offset.x, tB.offset.y)\r\n      end -- of endMoveTurnButton\r\n    }\r\n\r\n    --------------------------------------------------------------------------------\r\n    -- END of turnButton code\r\n    --------------------------------------------------------------------------------\r\n  end\r\n)\r\n__bundle_register(\r\n  \"Lua/tools\",\r\n  function(require, _LOADED, __bundle_register, __bundle_modules)\r\n    local seen = {}\r\n    function dump(t, i)\r\n      seen[t] = true\r\n      local s = {}\r\n      local n = 0\r\n      for k in pairs(t) do\r\n        n = n + 1\r\n        s[n] = k\r\n      end\r\n      table.sort(s)\r\n      for k, v in ipairs(s) do\r\n        print(i, v)\r\n        v = t[v]\r\n        if type(v) == \"table\" and not seen[v] then\r\n          dump(v, i .. \" \") -- и вновь вернем бесполезный комментарий\r\n        end\r\n      end\r\n    end\r\n  end\r\n)\r\nreturn __bundle_require(\"__root\")\r\n",
+  "LuaScriptState": "{\"playing\":false,\"tBSave\":{\"button\":\"b7757c\",\"curIndex\":0,\"curPlayer\":\"Black\",\"globalPanel\":true,\"noises\":\"b7757c\",\"offset\":{\"x\":-220,\"y\":0},\"order\":[],\"UIIndex\":2,\"UITable\":[{\"attributes\":[],\"children\":[{\"attributes\":{\"class\":\"bordered\",\"color\":\"FFFFFF\",\"outline\":\"#000000\",\"outlineSize\":\"1 -1\"},\"children\":[],\"tag\":\"Panel\"},{\"attributes\":{\"class\":\"notebook\",\"color\":\"#8F8478\",\"outline\":\"#4444dd\",\"outlineSize\":\"2 -2\"},\"children\":[],\"tag\":\"Panel\"},{\"attributes\":{\"class\":\"names\",\"color\":\"#000000\",\"fontSize\":\"16\",\"fontStyle\":\"Bold\"},\"children\":[],\"tag\":\"Text\"},{\"attributes\":{\"alignment\":\"MiddleRight\",\"class\":\"scores\",\"color\":\"#000000\",\"fontSize\":\"16\"},\"children\":[],\"tag\":\"Text\"}],\"tag\":\"Defaults\"},{\"attributes\":{\"allowDragging\":\"true\",\"color\":\"#444555\",\"height\":\"25\",\"id\":\"turnButton\",\"offsetXY\":\"-250 0\",\"onEndDrag\":\"tB_endMoveButton\",\"rectAlignment\":\"UpperRight\",\"returnToOriginalPositionWhenReleased\":\"false\",\"width\":\"150\"},\"children\":[{\"attributes\":{\"color\":\"#990000\",\"height\":\"20\",\"id\":\"closeButton\",\"onClick\":\"tB_toggleGlobalPanel\",\"rectAlignment\":\"UpperRight\",\"text\":\"X\",\"textColor\":\"#FFFFFF\",\"width\":\"20\"},\"tag\":\"Button\"},{\"attributes\":{\"alignment\":\"UpperLeft\",\"color\":\"#FFFFFF\",\"fontSize\":\"18\",\"fontStyle\":\"Bold\",\"offsetXY\":\"5 0\",\"text\":\"Turn Button\"},\"tag\":\"Text\"},{\"attributes\":{\"cellsize\":\"150 25\",\"columns\":\"1\",\"id\":\"orderList\",\"offsetXY\":\"0 -20\",\"rectAlignment\":\"TopCenter\",\"width\":\"100%\"},\"children\":{\"attributes\":{\"colors\":\"#cccccc|#dddddd|#444444|#00000000\",\"fontSize\":\"20\",\"height\":\"25\",\"id\":\"playerButton\",\"onClick\":\"tB_start\",\"text\":\"Start the game\",\"textColor\":\"Black\",\"width\":\"150\"},\"tag\":\"Button\"},\"tag\":\"GridLayout\"}],\"tag\":\"Panel\"}]}}",
   "MusicPlayer": {
     "AudioLibrary": [],
     "CurrentAudioTitle": "Unknown Title",
@@ -323,9 +323,9 @@
         "posX": 14.3504124,
         "posY": 1.21004069,
         "posZ": 5.14537334,
-        "rotX": -0.000108184337,
+        "rotX": -0.000108629734,
         "rotY": 179.991837,
-        "rotZ": -0.00223155855,
+        "rotZ": -0.00223161536,
         "scaleX": 0.4152275,
         "scaleY": 1.0,
         "scaleZ": 0.4152275
@@ -370,9 +370,9 @@
         "posX": 27.6534729,
         "posY": 1.210574,
         "posZ": -2.87922883,
-        "rotX": -0.000108537126,
+        "rotX": -0.000108597429,
         "rotY": 180.000519,
-        "rotZ": -0.00223172922,
+        "rotZ": -0.00223169825,
         "scaleX": 0.485639781,
         "scaleY": 1.0,
         "scaleZ": 0.485639781
@@ -391,9 +391,9 @@
       ],
       "Autoraise": true,
       "ColorDiffuse": {
-        "b": 0.252609253,
-        "g": 0.252609253,
-        "r": 0.252609253
+        "b": 0.2526092,
+        "g": 0.2526092,
+        "r": 0.2526092
       },
       "CustomImage": {
         "ImageScalar": 1.0,
@@ -453,11 +453,11 @@
       "Tooltip": true,
       "Transform": {
         "posX": -36.7501259,
-        "posY": 0.9936203,
+        "posY": 0.9936197,
         "posZ": 18.198698,
-        "rotX": -1.403991E-05,
-        "rotY": -0.00119093666,
-        "rotZ": 5.229703E-07,
+        "rotX": -1.40592156E-05,
+        "rotY": -0.001190904,
+        "rotZ": 5.00918E-07,
         "scaleX": 0.4445817,
         "scaleY": 0.5,
         "scaleZ": 0.5
@@ -476,9 +476,9 @@
       ],
       "Autoraise": true,
       "ColorDiffuse": {
-        "b": 0.252609253,
-        "g": 0.252609253,
-        "r": 0.252609253
+        "b": 0.2526092,
+        "g": 0.2526092,
+        "r": 0.2526092
       },
       "CustomImage": {
         "ImageScalar": 1.0,
@@ -558,11 +558,11 @@
       "Tooltip": true,
       "Transform": {
         "posX": -24.3615742,
-        "posY": 0.994238138,
+        "posY": 0.994238,
         "posZ": 18.9552479,
-        "rotX": 0.00487416,
+        "rotX": 0.004874918,
         "rotY": 179.9928,
-        "rotZ": -2.45025285E-06,
+        "rotZ": -1.2138381E-05,
         "scaleX": 0.5,
         "scaleY": 0.5,
         "scaleZ": 0.5
@@ -654,11 +654,11 @@
       "Tooltip": true,
       "Transform": {
         "posX": -22.36759,
-        "posY": 0.96,
+        "posY": 0.959999859,
         "posZ": 2.95024872,
-        "rotX": -9.237769E-06,
+        "rotX": -9.814978E-06,
         "rotY": 179.840836,
-        "rotZ": -5.99926625E-06,
+        "rotZ": -5.991835E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -750,11 +750,11 @@
       "Tooltip": true,
       "Transform": {
         "posX": -23.08936,
-        "posY": 0.96,
+        "posY": 0.9600001,
         "posZ": 5.710339,
-        "rotX": -3.84869963E-06,
+        "rotX": -4.16599732E-06,
         "rotY": 180.011032,
-        "rotZ": 1.5516556E-06,
+        "rotZ": 1.48353479E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -846,11 +846,11 @@
       "Tooltip": true,
       "Transform": {
         "posX": -20.43863,
-        "posY": 0.9600004,
+        "posY": 0.9600005,
         "posZ": 5.74971,
-        "rotX": -1.69698694E-06,
+        "rotX": 1.78108826E-06,
         "rotY": 179.623322,
-        "rotZ": 1.32654723E-05,
+        "rotZ": -7.761498E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -942,11 +942,11 @@
       "Tooltip": true,
       "Transform": {
         "posX": -17.8765411,
-        "posY": 0.96,
+        "posY": 0.9600001,
         "posZ": 5.782869,
-        "rotX": -5.666461E-06,
+        "rotX": -5.61426032E-06,
         "rotY": 180.000839,
-        "rotZ": 4.42098963E-06,
+        "rotZ": 4.33582636E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -991,9 +991,9 @@
         "posX": 33.1747971,
         "posY": 1.21077466,
         "posZ": 4.77576828,
-        "rotX": -0.000109220848,
-        "rotY": 179.995712,
-        "rotZ": -0.002231966,
+        "rotX": -0.000109192195,
+        "rotY": 179.995743,
+        "rotZ": -0.002231821,
         "scaleX": 0.332225472,
         "scaleY": 1.0,
         "scaleZ": 0.332225472
@@ -18782,9 +18782,9 @@
         "posX": -16.80701,
         "posY": 0.9442172,
         "posZ": 33.6581573,
-        "rotX": -3.195018E-09,
+        "rotX": -2.518616E-07,
         "rotY": 359.993,
-        "rotZ": -6.802633E-08,
+        "rotZ": 6.37895937E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -18825,9 +18825,9 @@
         "posX": -33.606823,
         "posY": 1.461217,
         "posZ": 32.92926,
-        "rotX": -1.08279934E-07,
-        "rotY": -0.0001106588,
-        "rotZ": 1.14571023E-07,
+        "rotX": 2.29257509E-07,
+        "rotY": -0.000110666682,
+        "rotZ": 1.24817E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -18872,9 +18872,9 @@
         "posX": 34.5939064,
         "posY": 1.21082985,
         "posZ": 4.80334044,
-        "rotX": -0.000107881649,
+        "rotX": -0.000107543623,
         "rotY": 180.0175,
-        "rotZ": -0.00223153643,
+        "rotZ": -0.00223159255,
         "scaleX": 0.332225472,
         "scaleY": 1.0,
         "scaleZ": 0.332225472
@@ -18919,9 +18919,9 @@
         "posX": -18.972929,
         "posY": 0.965000033,
         "posZ": 8.325237,
-        "rotX": 3.062107E-06,
+        "rotX": -5.698587E-06,
         "rotY": 179.996353,
-        "rotZ": 8.01107035E-07,
+        "rotZ": 4.97621977E-06,
         "scaleX": 0.26,
         "scaleY": 1.0,
         "scaleZ": 0.26
@@ -18966,9 +18966,9 @@
         "posX": -21.0238876,
         "posY": 0.965000033,
         "posZ": 7.711716,
-        "rotX": -4.11037126E-06,
+        "rotX": 1.46179673E-06,
         "rotY": 180.010254,
-        "rotZ": 3.37295478E-06,
+        "rotZ": 4.280743E-06,
         "scaleX": 0.26,
         "scaleY": 1.0,
         "scaleZ": 0.26
@@ -19030,12 +19030,12 @@
       "Sticky": true,
       "Tooltip": true,
       "Transform": {
-        "posX": 13.9062128,
-        "posY": 1.99132586,
-        "posZ": 14.017745,
-        "rotX": 0.045892287,
-        "rotY": 180.017441,
-        "rotZ": 359.988129,
+        "posX": 13.9061508,
+        "posY": 1.9912976,
+        "posZ": 14.0177937,
+        "rotX": 0.05136686,
+        "rotY": 180.017639,
+        "rotZ": 359.982025,
         "scaleX": 0.625,
         "scaleY": 0.625,
         "scaleZ": 0.625
@@ -19097,12 +19097,12 @@
       "Sticky": true,
       "Tooltip": true,
       "Transform": {
-        "posX": 13.3923378,
-        "posY": 1.64795709,
-        "posZ": 13.5565777,
-        "rotX": 11.5109758,
-        "rotY": 179.174332,
-        "rotZ": 359.732727,
+        "posX": 13.3923483,
+        "posY": 1.64787889,
+        "posZ": 13.5566492,
+        "rotX": 11.5196285,
+        "rotY": 179.175064,
+        "rotZ": 359.72934,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -19164,12 +19164,12 @@
       "Sticky": true,
       "Tooltip": true,
       "Transform": {
-        "posX": 13.9816494,
-        "posY": 3.04536,
-        "posZ": 13.336875,
-        "rotX": 5.701961,
-        "rotY": 180.465866,
-        "rotZ": 186.792084,
+        "posX": 13.9815016,
+        "posY": 3.0453186,
+        "posZ": 13.3368187,
+        "rotX": 5.703228,
+        "rotY": 180.46402,
+        "rotZ": 186.7937,
         "scaleX": 0.75,
         "scaleY": 0.75,
         "scaleZ": 0.75
@@ -19231,12 +19231,12 @@
       "Sticky": true,
       "Tooltip": true,
       "Transform": {
-        "posX": 13.8705235,
-        "posY": 2.81822586,
-        "posZ": 13.7444754,
-        "rotX": 0.309612,
-        "rotY": 164.949036,
-        "rotZ": 359.711548,
+        "posX": 13.8702993,
+        "posY": 2.818221,
+        "posZ": 13.744503,
+        "rotX": 0.3107269,
+        "rotY": 164.945709,
+        "rotZ": 359.704956,
         "scaleX": 0.625,
         "scaleY": 0.625,
         "scaleZ": 0.625
@@ -19298,12 +19298,12 @@
       "Sticky": true,
       "Tooltip": true,
       "Transform": {
-        "posX": 14.5159655,
-        "posY": 2.021458,
-        "posZ": 13.7849331,
-        "rotX": 351.982544,
-        "rotY": 269.123169,
-        "rotZ": 80.9022,
+        "posX": 14.515893,
+        "posY": 2.02140164,
+        "posZ": 13.7849817,
+        "rotX": 351.987152,
+        "rotY": 269.121033,
+        "rotZ": 80.9037247,
         "scaleX": 0.75,
         "scaleY": 0.75,
         "scaleZ": 0.75
@@ -19313,8 +19313,8 @@
     {
       "Autoraise": true,
       "ColorDiffuse": {
-        "b": 0.3954499,
-        "g": 0.3954499,
+        "b": 0.3954498,
+        "g": 0.3954498,
         "r": 1.0
       },
       "CustomMesh": {
@@ -19357,12 +19357,12 @@
       "Sticky": true,
       "Tooltip": true,
       "Transform": {
-        "posX": 13.8629637,
-        "posY": 0.9600097,
-        "posZ": 13.8404884,
-        "rotX": -0.00013803567,
-        "rotY": 180.268982,
-        "rotZ": 0.0005614314,
+        "posX": 13.8629618,
+        "posY": 0.9600121,
+        "posZ": 13.8404894,
+        "rotX": -0.000232650535,
+        "rotY": 180.268967,
+        "rotZ": 0.000624557957,
         "scaleX": 4.259999,
         "scaleY": 4.259999,
         "scaleZ": 4.259999
@@ -19404,15 +19404,58 @@
       "Sticky": true,
       "Tooltip": true,
       "Transform": {
-        "posX": -15.725297,
-        "posY": 1.06000006,
+        "posX": -15.7252989,
+        "posY": 1.06000042,
         "posZ": -15.8316774,
-        "rotX": 9.868883E-07,
+        "rotX": -6.90515947E-08,
         "rotY": 180.0,
-        "rotZ": 2.4789523E-07,
+        "rotZ": -3.760253E-08,
         "scaleX": 5.189811,
         "scaleY": 1.0,
         "scaleZ": 5.189811
+      },
+      "XmlUI": ""
+    },
+    {
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 1.0,
+        "g": 1.0,
+        "r": 1.0
+      },
+      "CustomAssetbundle": {
+        "AssetbundleSecondaryURL": "",
+        "AssetbundleURL": "http://infinitebucket.com/tts/scenesystem/env-sounds-trigger.unity3d",
+        "LoopingEffectIndex": 0,
+        "MaterialIndex": 3,
+        "TypeIndex": 0
+      },
+      "Description": "",
+      "GMNotes": "",
+      "GUID": "b7757c",
+      "Grid": true,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "Name": "Custom_Assetbundle",
+      "Nickname": "Noises",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -8.233338,
+        "posY": 1.46,
+        "posZ": 0.0149304792,
+        "rotX": 8.21689071E-07,
+        "rotY": 359.980865,
+        "rotZ": 9.144947E-08,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "XmlUI": ""
     }
@@ -19578,5 +19621,5 @@
     "Type": 0
   },
   "VersionNumber": "v12.2.3",
-  "XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->"
+  "XmlUI": "<Defaults>\r\n    <Panel class=\"bordered\"  color=\"FFFFFF\" outline=\"#000000\" outlineSize=\"1 -1\"/>\r\n    <Panel class=\"notebook\"  color=\"#8F8478\" outline=\"#4444dd\" outlineSize=\"2 -2\"/>\r\n    <Text class=\"names\" fontSize=\"16\" fontStyle=\"Bold\" color=\"#000000\" />\r\n    <Text class=\"scores\" fontSize=\"16\" alignment=\"MiddleRight\" color=\"#000000\" />\r\n</Defaults>"
 }
