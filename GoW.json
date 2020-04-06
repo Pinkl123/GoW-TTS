@@ -3,7 +3,7 @@
   "GameMode": "Poker",
   "Gravity": 0.5,
   "PlayArea": 0.5,
-  "Date": "3/28/2020 11:40:52 PM",
+  "Date": "4/6/2020 4:35:46 PM",
   "Table": "Table_Custom",
   "TableURL": "https://i.imgur.com/aaPLwWG.jpg",
   "Sky": "Sky_Museum",
@@ -88,7 +88,7 @@
         "Color": "Black",
         "Transform": {
           "posX": -72.78446,
-          "posY": -6.52977848,
+          "posY": -6.58460331,
           "posZ": -21.6527138,
           "rotX": 0.0,
           "rotY": -0.000402526377,
@@ -102,7 +102,7 @@
         "Color": "Black",
         "Transform": {
           "posX": 4.198513,
-          "posY": 1.17166519,
+          "posY": 1.11683989,
           "posZ": -25.1850758,
           "rotX": 0.0,
           "rotY": -0.000402526348,
@@ -116,14 +116,14 @@
         "Color": "Purple",
         "Transform": {
           "posX": -0.6561499,
-          "posY": 1.55543852,
+          "posY": 1.50061369,
           "posZ": 0.241939038,
           "rotX": 0.0,
           "rotY": 8.163399,
           "rotZ": 0.0,
-          "scaleX": 2.39759278,
+          "scaleX": 2.39761472,
           "scaleY": 7.0,
-          "scaleZ": 3.06767941
+          "scaleZ": 3.067708
         }
       }
     ]
@@ -307,10 +307,10 @@
       "Transform": {
         "posX": 14.3504124,
         "posY": 1.21004069,
-        "posZ": 5.14537334,
-        "rotX": -0.000108458269,
+        "posZ": 5.145373,
+        "rotX": -0.000109326589,
         "rotY": 179.991821,
-        "rotZ": -0.00223120768,
+        "rotZ": -0.00223180372,
         "scaleX": 0.4152275,
         "scaleY": 1.0,
         "scaleZ": 0.4152275
@@ -355,9 +355,9 @@
         "posX": 27.6534729,
         "posY": 1.210574,
         "posZ": -2.87922883,
-        "rotX": -0.000108635904,
+        "rotX": -0.000108600019,
         "rotY": 180.000519,
-        "rotZ": -0.00223147986,
+        "rotZ": -0.00223181746,
         "scaleX": 0.485639781,
         "scaleY": 1.0,
         "scaleZ": 0.485639781
@@ -400,11 +400,11 @@
       "Name": "Custom_Board",
       "Transform": {
         "posX": -36.7501259,
-        "posY": 0.993620157,
+        "posY": 0.9936203,
         "posZ": 18.198698,
-        "rotX": -1.4051835E-05,
-        "rotY": -0.00119091675,
-        "rotZ": 4.882107E-07,
+        "rotX": -1.40583152E-05,
+        "rotY": -0.00119093142,
+        "rotZ": 4.74802022E-07,
         "scaleX": 0.4445817,
         "scaleY": 0.5,
         "scaleZ": 0.5
@@ -413,9 +413,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.252609164,
-        "g": 0.252609164,
-        "b": 0.252609164
+        "r": 0.252609134,
+        "g": 0.252609134,
+        "b": 0.252609134
       },
       "Locked": false,
       "Grid": true,
@@ -485,11 +485,11 @@
       "Name": "Custom_Board",
       "Transform": {
         "posX": -24.3615742,
-        "posY": 0.994238138,
+        "posY": 0.994238,
         "posZ": 18.9552479,
-        "rotX": 0.00487222,
+        "rotX": 0.004872948,
         "rotY": 179.9928,
-        "rotZ": -1.22179936E-05,
+        "rotZ": -2.44375087E-06,
         "scaleX": 0.5,
         "scaleY": 0.5,
         "scaleZ": 0.5
@@ -498,9 +498,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.252609164,
-        "g": 0.252609164,
-        "b": 0.252609164
+        "r": 0.252609134,
+        "g": 0.252609134,
+        "b": 0.252609134
       },
       "Locked": false,
       "Grid": true,
@@ -590,11 +590,11 @@
       "Name": "Custom_Model_Infinite_Bag",
       "Transform": {
         "posX": -22.36759,
-        "posY": 0.9600001,
+        "posY": 0.959999859,
         "posZ": 2.95024872,
-        "rotX": -9.838352E-06,
+        "rotX": -9.909773E-06,
         "rotY": 179.840836,
-        "rotZ": -6.06440153E-06,
+        "rotZ": -6.27128748E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -686,11 +686,11 @@
       "Name": "Custom_Model_Infinite_Bag",
       "Transform": {
         "posX": -23.08936,
-        "posY": 0.959999859,
+        "posY": 0.9600001,
         "posZ": 5.710339,
-        "rotX": -4.206301E-06,
+        "rotX": -4.128426E-06,
         "rotY": 180.011032,
-        "rotZ": 1.37284053E-06,
+        "rotZ": 1.25422537E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -784,9 +784,9 @@
         "posX": -20.43863,
         "posY": 0.9600005,
         "posZ": 5.74971,
-        "rotX": 1.79336689E-06,
+        "rotX": 1.80564678E-06,
         "rotY": 179.623322,
-        "rotZ": -7.721264E-06,
+        "rotZ": -7.68103746E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -878,11 +878,11 @@
       "Name": "Custom_Model_Infinite_Bag",
       "Transform": {
         "posX": -17.8765411,
-        "posY": 0.959999859,
+        "posY": 0.9600001,
         "posZ": 5.782869,
-        "rotX": -5.49967854E-06,
+        "rotX": -5.30489342E-06,
         "rotY": 180.000839,
-        "rotZ": 4.232185E-06,
+        "rotZ": 4.18715763E-06,
         "scaleX": 0.9500002,
         "scaleY": 0.9500002,
         "scaleZ": 0.9500002
@@ -975,10 +975,10 @@
       "Transform": {
         "posX": 33.1747971,
         "posY": 1.21077466,
-        "posZ": 4.775769,
-        "rotX": -0.000108503904,
-        "rotY": 179.9957,
-        "rotZ": -0.00223134528,
+        "posZ": 4.77576876,
+        "rotX": -0.000108069551,
+        "rotY": 179.995712,
+        "rotZ": -0.0022315064,
         "scaleX": 0.332225472,
         "scaleY": 1.0,
         "scaleZ": 0.332225472
@@ -1021,11 +1021,11 @@
       "Name": "Infinite_Bag",
       "Transform": {
         "posX": -16.80701,
-        "posY": 0.9442171,
+        "posY": 0.9442172,
         "posZ": 33.6581573,
-        "rotX": -3.897597E-07,
+        "rotX": -3.979221E-07,
         "rotY": 359.993,
-        "rotZ": 6.88945249E-07,
+        "rotZ": 4.591175E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -18814,9 +18814,9 @@
         "posX": -33.606823,
         "posY": 1.461217,
         "posZ": 32.92926,
-        "rotX": 2.2859092E-07,
-        "rotY": -0.000110664994,
-        "rotZ": 2.909296E-07,
+        "rotX": 1.76466443E-07,
+        "rotY": -0.000110663794,
+        "rotZ": 3.132785E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -18856,10 +18856,10 @@
       "Transform": {
         "posX": 34.5939064,
         "posY": 1.21082985,
-        "posZ": 4.803341,
-        "rotX": -0.000107115957,
-        "rotY": 180.017487,
-        "rotZ": -0.00223144586,
+        "posZ": 4.80334044,
+        "rotX": -0.000107286891,
+        "rotY": 180.0175,
+        "rotZ": -0.00223180931,
         "scaleX": 0.332225472,
         "scaleY": 1.0,
         "scaleZ": 0.332225472
@@ -18904,9 +18904,9 @@
         "posX": -18.972929,
         "posY": 0.965000033,
         "posZ": 8.325237,
-        "rotX": 5.49461947E-06,
+        "rotX": -6.852525E-06,
         "rotY": 179.996353,
-        "rotZ": -3.0656488E-06,
+        "rotZ": -1.943886E-07,
         "scaleX": 0.26,
         "scaleY": 1.0,
         "scaleZ": 0.26
@@ -18951,9 +18951,9 @@
         "posX": -21.0238876,
         "posY": 0.965000033,
         "posZ": 7.711716,
-        "rotX": 4.80646563E-08,
+        "rotX": -7.49401252E-08,
         "rotY": 180.010254,
-        "rotZ": -2.68203564E-07,
+        "rotZ": -8.725828E-07,
         "scaleX": 0.26,
         "scaleY": 1.0,
         "scaleZ": 0.26
@@ -18995,12 +18995,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.9062624,
-        "posY": 1.991326,
-        "posZ": 14.0177526,
-        "rotX": 0.0578544661,
-        "rotY": 180.01947,
-        "rotZ": 359.9825,
+        "posX": 13.9062662,
+        "posY": 1.99132276,
+        "posZ": 14.0177565,
+        "rotX": 0.0626290441,
+        "rotY": 180.021637,
+        "rotZ": 359.984283,
         "scaleX": 0.625,
         "scaleY": 0.625,
         "scaleZ": 0.625
@@ -19062,12 +19062,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.3924074,
-        "posY": 1.64773023,
-        "posZ": 13.5566568,
-        "rotX": 11.5261269,
-        "rotY": 179.176987,
-        "rotZ": 359.729736,
+        "posX": 13.3923845,
+        "posY": 1.64770412,
+        "posZ": 13.5567093,
+        "rotX": 11.5309305,
+        "rotY": 179.179489,
+        "rotZ": 359.7315,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -19129,12 +19129,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.9816856,
-        "posY": 3.04525924,
-        "posZ": 13.3367081,
-        "rotX": 5.70654726,
-        "rotY": 180.465744,
-        "rotZ": 186.801285,
+        "posX": 13.9816895,
+        "posY": 3.04519248,
+        "posZ": 13.33662,
+        "rotX": 5.70834,
+        "rotY": 180.468124,
+        "rotZ": 186.80983,
         "scaleX": 0.75,
         "scaleY": 0.75,
         "scaleZ": 0.75
@@ -19196,12 +19196,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.870554,
-        "posY": 2.81826663,
-        "posZ": 13.7442818,
-        "rotX": 0.319684863,
-        "rotY": 164.9445,
-        "rotZ": 359.708466,
+        "posX": 13.87057,
+        "posY": 2.81824064,
+        "posZ": 13.7442131,
+        "rotX": 0.327783048,
+        "rotY": 164.94397,
+        "rotZ": 359.7133,
         "scaleX": 0.625,
         "scaleY": 0.625,
         "scaleZ": 0.625
@@ -19263,12 +19263,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 14.5159655,
-        "posY": 2.02150035,
-        "posZ": 13.78496,
-        "rotX": 351.985229,
-        "rotY": 269.120361,
-        "rotZ": 80.90639,
+        "posX": 14.5159645,
+        "posY": 2.0214622,
+        "posZ": 13.7849379,
+        "rotX": 351.98233,
+        "rotY": 269.120483,
+        "rotZ": 80.90805,
         "scaleX": 0.75,
         "scaleY": 0.75,
         "scaleZ": 0.75
@@ -19330,12 +19330,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.8629627,
-        "posY": 0.9600073,
+        "posX": 13.8629637,
+        "posY": 0.960007548,
         "posZ": 13.84049,
-        "rotX": 0.000317029,
+        "rotX": -0.0001333945,
         "rotY": 180.268982,
-        "rotZ": 0.000160905649,
+        "rotZ": 0.0005309941,
         "scaleX": 4.259999,
         "scaleY": 4.259999,
         "scaleZ": 4.259999
@@ -19345,8 +19345,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.3954497,
-        "b": 0.3954497
+        "g": 0.395449638,
+        "b": 0.395449638
       },
       "Locked": false,
       "Grid": true,
@@ -19390,11 +19390,11 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": -15.7252989,
-        "posY": 1.06000018,
+        "posY": 1.06000006,
         "posZ": -15.8316774,
-        "rotX": 2.0300115E-06,
+        "rotX": 6.1360447E-07,
         "rotY": 180.0,
-        "rotZ": -1.63642869E-06,
+        "rotZ": -3.25821162E-07,
         "scaleX": 5.189811,
         "scaleY": 1.0,
         "scaleZ": 5.189811
@@ -19438,10 +19438,10 @@
       "Transform": {
         "posX": -8.233338,
         "posY": 1.46,
-        "posZ": 0.0149304178,
-        "rotX": 8.492296E-07,
+        "posZ": 0.0149303908,
+        "rotX": 6.89593548E-07,
         "rotY": 359.980865,
-        "rotZ": 2.49064385E-07,
+        "rotZ": 4.26621057E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -19475,6 +19475,52 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "b7757c"
+    },
+    {
+      "Name": "Custom_Assetbundle_Bag",
+      "Transform": {
+        "posX": -37.2009926,
+        "posY": 1.25209391,
+        "posZ": -14.0157318,
+        "rotX": -6.416462E-06,
+        "rotY": 0.0214990657,
+        "rotZ": 9.16691E-07,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Крафт Котёл",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.900696933,
+        "g": 0.8812373,
+        "b": 0.246347159
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "MaterialIndex": -1,
+      "MeshIndex": -1,
+      "Number": 0,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "file:///F:\\Users\\Pinkl\\Desktop\\1.unity3d",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 6,
+        "LoopingEffectIndex": 0
+      },
+      "XmlUI": "",
+      "LuaScript": "--Script create by Pinkl\r\n--vk.com/jhramone\r\n\r\nfunction onload()\r\n\r\nself.createButton({\r\n        label=\"Test\", click_function=\"spawnitem\", function_owner=self,\r\n        position={0,0.1,-2},rotation={0,180,0}, height=400, width=1200, font_size=240,\r\n\t\t color={0,0,0}, font_color={1,1,1}\r\n  })\r\n\r\nend\r\n\r\nfunction spawnitem()\r\n  self.lock()\r\n  position = self.getPosition()\r\n  rotation = self.getRotation()\r\n\r\n  seting_effect = {}\r\n  seting_effect.assetbundle = 'https://drive.google.com/uc?export=download&id=0BxvLXJFgtJJ8cV9UV003eGk5T1E'\r\n\r\n  seting_effect2 = {}\r\n  seting_effect2.assetbundle = 'https://drive.google.com/uc?export=download&id=0BxvLXJFgtJJ8N0d6cnl0bkQ5SUU'\r\n\r\n  seting = {}\r\n  seting.image = 'http://i.imgur.com/SRbrDP1.png'\r\n\r\n  seting_dice = {}\r\n  seting_dice.type = 5\r\n  seting_dice.image = 'https://gateway.ipfs.io/ipfs/QmQ2FaDgiVw6faxPxEMVEMFy1g5scneVDkkD9qxk1W5kFc'\r\n\r\n\r\n  effect_parameters = {}\r\n  effect_parameters.type ='Custom_AssetBundle'\r\n  effect_parameters.scale = {x=0.01, y=0.01, z=0.01}\r\n  effect_parameters.position = {position.x, position.y, position.z}\r\n\r\n  effect_parameters2 = {}\r\n  effect_parameters2.type ='Custom_AssetBundle'\r\n  effect_parameters2.scale = {x=0.01, y=0.01, z=0.01}\r\n  effect_parameters2.position = {position.x, position.y+1.5, position.z}\r\n\r\n  dice_parameters = {}\r\n  dice_parameters.type = 'Custom_Dice'\r\n  dice_parameters.position = {position.x, position.y+5, position.z}\r\n\r\n  token_parameters = {}\r\n  token_parameters.type = 'Custom_Token'\r\n  token_parameters.scale = {x=0.01, y=1, z=0.01}\r\n\r\n  token_parameters.position = {position.x, position.y, position.z}\r\n  token_parameters.rotation = {rotation.x+90, rotation.y, rotation.z}\r\n\r\n  effect = spawnObject(effect_parameters)\r\n  effect.setCustomObject(seting_effect)\r\n  effect.lock()\r\n  effect.AssetBundle.playLoopingEffect(8)\r\n\r\n  effect2 = spawnObject(effect_parameters2)\r\n  effect2.setCustomObject(seting_effect2)\r\n  effect2.lock()\r\n\r\n  --dice = spawnObject(dice_parameters)\r\n  --dice.setCustomObject(seting_dice)\r\n  --dice.lock()\r\n\r\n  token = spawnObject(token_parameters)\r\n  token.setCustomObject(seting)\r\n\r\n  token.lock()\r\n\r\n  Wait.frames(function() item() end, 1)\r\n  function item()\r\n    item = token.getGUID()\r\n  end\r\n    --[[Wait.time(function() dice.unlock()\r\n      dice.roll()\r\n    end, 1)]]\r\n\r\n  Wait.time(function() Start() end, 1)\r\n  Wait.time(function() effect2.AssetBundle.playTriggerEffect(1) end, 3)\r\nend\r\n\r\n--[[function onCollisionEnter(collision_info)\r\n  dice.lock()\r\nend]]\r\n\r\nspinning = false\r\nspinTime = 5\r\nfunction Start()\r\n\r\n  rouletteWheelGUID = item\r\n  rouletteWheel = nil\r\n  rouletteWheel = getObjectFromGUID(item)\r\n    if spinning == false then\r\n        startTime = os.clock()\r\n        startLuaCoroutine(self, 'SpinCoroutine')\r\n    end\r\nend\r\n\r\nfunction SpinCoroutine ()\r\n\r\n    spinning = true\r\n    b = 480\r\n    a = 0\r\n    alpha = 0\r\n\r\n    while a < b do\r\n\r\n        currentRot = token.getRotation()\r\n        currentSca = token.getScale()\r\n        currentPos = token.getPosition()\r\n\r\n        currentRot['y'] = currentRot['y'] + 3\r\n        currentSca['z'] = currentSca['z'] + 0.001\r\n        currentSca['x'] = currentSca['x'] + 0.001\r\n        currentPos['y'] = currentPos['y'] + 0.0083\r\n\r\n        token.setPosition(currentPos)\r\n        token.setScale(currentSca)\r\n        token.setRotation(currentRot)\r\n        token.setColorTint({1,1,1,0 + alpha})\r\n        effect.setPosition(currentPos)\r\n\r\n        coroutine.yield(0) --wait one frame\r\n        log(a)\r\n        a = a + 1\r\n        alpha = alpha + 0.0030\r\n    end\r\n\r\n    spinning = false\r\n\r\n    Wait.time(function () effect.destruct() effect2.destruct() rouletteWheel.unlock() self.unlock() end, 3)\r\n    --[[ Always return 1 at the end of a coroutine. --]]\r\n    return 1\r\nend\r\n",
+      "LuaScriptState": "",
+      "GUID": "385caa"
     }
   ],
   "SnapPoints": [
@@ -19621,5 +19667,5 @@
       "id": 9
     }
   },
-  "VersionNumber": "v12.2.3"
+  "VersionNumber": "v12.3.3"
 }
