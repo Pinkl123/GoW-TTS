@@ -93,6 +93,9 @@ __bundle_register(
         end
         tB.init("Black")
       end
+
+      spellInit("0c29e8", "Wound", "http://cloud-3.steamusercontent.com/ugc/993513340528836579/C8CC80C66767752271BC7A4DA20F510CAC866CBC/")
+      spellInit("27d3dd", "Stun", "http://cloud-3.steamusercontent.com/ugc/993513340528833726/9EB6FC0A8D9233428338344D7BE37C0622595BF1/")
     end -- of onLoad
 
     function onChat(what, who)
@@ -124,6 +127,8 @@ __bundle_register(
     end
 
     require("Lua/turnButton") -- require adds a ".ttslua"
+    require("Lua/createButton")
+
     --------------------------------------------------------------------------------
     -- these are called from the turn system if then exist
     --------------------------------------------------------------------------------
@@ -542,6 +547,278 @@ __bundle_register(
         end
       end
     end
+    function listvalues(xs)
+      local t = { }
+      for _, v in ipairs(xs) do
+          t[#t+1] = tostring(v)
+      end
+      return table.concat(t, "\n")
+    end
   end
 )
+__bundle_register(
+  "Lua/createButtonClassicUI",
+  function(require, _LOADED, __bundle_register, __bundle_modules)
+    --#region Реализация через классический UI
+    local xs = {}
+    -- `button_click: objectOwner:userdata -> currPlayerColor:string -> ?:bool`
+    function button_click(objectOwner, currPlayerColor, _)
+      xs[objectOwner.guid]()
+    end
+    -- `_ : buttonGuid:string -> onClick:unit -> unit`
+    function createButtonClassicUIInit(buttonGuid, onClick)
+      local oldTable = {
+        width = 4500,
+        height = 800,
+        position = {0, 0.5, 0},
+        color = {0.6, 0.4, 0.3},
+        hover_color = {0.5, 0.5, 0.5},
+        press_color = {1, 1, 1},
+        label = "Start the Game",
+        font_size = 600,
+        font_color = {0, 0, 0},
+        click_function = "button_click",
+        function_owner = Global
+      }
+      xs[buttonGuid] = onClick
+      local button = getObjectFromGUID(buttonGuid)
+      button.createButton(oldTable)
+    end
+    --#endregion
+  end
+)
+__bundle_register(
+  "Lua/createButton",
+  function(require, _LOADED, __bundle_register, __bundle_modules)
+    local ids = {}
+
+    -- `player` — https://api.tabletopsimulator.com/player/
+    -- `value` — onClick, onMouseEnter, onMouseExit, onMouseDown and onMouseUp all pass the click button. The values are -1 LMB, -2RMB, -3 MMB, 0 touch single, 1 double touche, 2 triple touch.
+    -- `id` — атрибут `id`
+    -- `_ : player:LuaPlayer -> value:string -> id:string`
+    function button_click2(player, value, id)
+      ids[id]()
+    end
+
+    -- <Defaults>
+    --   <Button onClick="onClick" fontSize="80" fontStyle="Bold" textColor="#FFFFFF" color="#000000F0"/>
+    --   <Text fontSize="80" fontStyle="Bold" color="#A3A3A3"/>
+    -- </Defaults>
+    -- <Panel position="0 -0 0" rotation="180 180 0" scale="3.5 3.5" >
+    --   <VerticalLayout height="100" width="100">
+    --   <Panel id="EXPBar" >
+    --     <HorizontalLayout>
+    --       <Button id="Test" fontSize="45" text="1" color="#000000F0"></Button>
+    --     </HorizontalLayout>
+    --   </Panel>
+    --   </VerticalLayout>
+    -- </Panel>
+
+    -- `_ : buttonGuid:string -> onClick:unit -> unit`
+    function createButtoninit(buttonGuid, onClick)
+      -- TODO: почему-то создает гигантские кнопки, хотя всё в точности переписано
+      local xmlTable = {
+          {
+            tag = "Defaults",
+            attributes = {},
+            children = {
+              {
+                tag = "Button",
+                attributes = {
+                  fontSize="80",
+                  fontStyle="Bold",
+                  textColor="#FFFFFF",
+                  color="#000000F0"
+                }
+              },
+              {
+                tag = "Text",
+                attributes = {
+                  fontSize="80",
+                  fontStyle="Bold",
+                  color="#A3A3A3"
+                }
+              }
+            }
+          },
+          {
+            tag = "Panel",
+            attributes = {
+              position = "0 -0 0",
+              rotation = "180 180 0",
+              scale = "3.5 3.5"
+            },
+            children = {
+              {
+                tag = "VerticalLayout",
+                attributes = {
+                  height = "100",
+                  width = "100"
+                }
+              },
+              {
+                tag = "Panel",
+                attributes = {
+                  id="EXPBar"
+                },
+                children = {
+                  {
+                    tag = "HorizontalLayout",
+                    attributes = {},
+                    children = {
+                      {
+                        tag = "Button",
+                        attributes = {
+                          id = buttonGuid,
+                          fontSize = "45",
+                          text = "1",
+                          color = "#000000F0",
+                          onClick = "Global/button_click2"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      local xmlTable2 = {
+        {
+          tag = "Button",
+          attributes = {
+            id = buttonGuid,
+            class = "cl",
+            width = "500",
+            height = "200",
+            text = "Start the Game",
+            fontSize = "20",
+            textColor = "Black",
+            -- position = "0 0.5 0",
+            colors = "#cccccc|#dddddd|#444444|#00000000",
+            onClick = "Global/button_click2" -- пробовал и "Global/x.button_click", и так "Global/x/button_click", и так "Global/x:button_click", но всё тщетно
+          }
+        }
+      }
+
+      ids[buttonGuid] = onClick
+      local button = getObjectFromGUID(buttonGuid)
+      -- Wait.time(function () button.UI.setXmlTable(xmlTable) end, 1, 1) -- думал, что беда может быть в тайминге, но нет
+      button.UI.setXmlTable(xmlTable2)
+    end
+
+    local varnameCollisionWithObjGuid = "collisionWith" -- костыль
+    local function CreateSkill(skill)
+      local bzz_parameters = {}
+      bzz_parameters.type = 'Custom_Token'
+      bzz_parameters.scale = {x=0.26, y=0.1, z=0.26}
+      bzz_parameters.rotation = {x=0, y=180, z=0}
+      bzz_parameters.position = {x=0.26, y=0.1, z=0.26}
+      local bzz = spawnObject(bzz_parameters)
+      bzz.use_hands = true
+      --bzz.setName(SkillName.." (Атака)")
+      -- bzz.setName("Stun")
+      bzz.setName(skill.name)
+      local stats = skill.type.."\n".."Урон: ".. skill.mda * skill.spd .."\n".."Радиус: "..skill.radius
+      bzz.setDescription(stats)
+      local custom1 = {}
+      -- custom1.image = 'http://cloud-3.steamusercontent.com/ugc/993513340528833726/9EB6FC0A8D9233428338344D7BE37C0622595BF1/'
+      custom1.image = skill.imageUrl
+      custom1.thickness = 0.01
+      bzz.setCustomObject(custom1)
+    end
+
+    local function CheckStats(self, skillName, skillImageUrl)
+      local tableId = self.getVar(varnameCollisionWithObjGuid)
+      if tableId == "" or tableId == nil then
+        print("Этот тайл нужно положить на лист персонажа. Если даже он лежит, то все равно пошевелите его и попробуйте снова.")
+        return
+      end
+      local TableG = getObjectFromGUID(tableId)
+      local PlayerStats = TableG.getGMNotes()
+      local SelfStats = self.getDescription()
+
+      local tofindMDA = 'MDA'
+      local foundMDA = string.match(PlayerStats, tofindMDA..' ([%d-]*)')
+      print(foundMDA)
+
+      local tofindMPC = 'MPC'
+      local foundMPC = string.match(PlayerStats, tofindMPC..' ([%d-]*)')
+      print(foundMPC)
+
+      local tofindCD = 'Перезарядка:'
+      local foundCD = string.match(SelfStats, tofindCD..' ([%d-]*)')
+      print(foundCD)
+
+      local tofindSPD = 'Мощность:'
+      local foundSPD = string.match(SelfStats, tofindSPD..' ([-+]?%d+%.?%d+)')
+      print(foundSPD)
+
+      local tofindCost = 'Стоимость:'
+      local foundCost = string.match(SelfStats, tofindCost..' ([%d-]*)')
+      print(foundCost)
+
+      local tofindRange = 'Дальность:'
+      local foundRange = string.match(SelfStats, tofindRange..' ([%d-]*)')
+      print(foundRange)
+
+      local tofindType = 'Тип:'
+      local foundType = string.match(SelfStats, tofindType..' ([%S]*)')
+      print(foundType)
+
+      local tofindRadius = 'Область:'
+      local foundRadius = string.match(SelfStats, tofindRadius..' ([%d-]*)')
+      print(foundRadius)
+      local skill =
+        {
+          name = skillName,
+          imageUrl = skillImageUrl,
+          mda = foundMDA,
+          mpc = foundMPC,
+          cd = foundCD,
+          spd = foundSPD,
+          cost = foundCost,
+          range = foundRange,
+          type = foundType,
+          radius = foundRadius
+        }
+      local stats = getGlobalScriptTable("stats")
+      print("mpc", stats.MPC)
+      if stats.MPC < tonumber(foundCost) then
+        print("Вася нету маны")
+      else
+        stats.MPC = stats.MPC - foundCost
+        print(stats.MPC)
+        setGlobalScriptTable("stats", stats)
+        CreateSkill(skill)
+      end
+    end
+
+    function spellInit(buttonGuid, skillName, skillImageUrl)
+      local button = getObjectFromGUID(buttonGuid)
+      -- SkillName = button.getName()
+      createButtoninit(buttonGuid, function() CheckStats(button, skillName, skillImageUrl) end)
+
+      -- Думали, что можно сделать так:
+      -- ```lua
+      -- button.onCollisionEnter = function(x)
+      --   local guid = x.collision_object.getGUID()
+      --   ...
+      -- end
+      -- ```
+      -- А вот ни черта, приходится делать через костыль `.setLuaScript`:
+      local code =
+        {
+          "function onCollisionEnter(x)",
+          "  local guid = x.collision_object.getGUID()",
+          -- "  print(guid)",
+          string.format("  self.setVar(\"%s\", guid)", varnameCollisionWithObjGuid),
+          "end"
+        }
+      button.setLuaScript(listvalues(code))
+    end
+  end
+)
+
 return __bundle_require("__root")
