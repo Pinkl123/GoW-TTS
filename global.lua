@@ -628,7 +628,7 @@ __bundle_register(
                   fontSize="80",
                   fontStyle="Bold",
                   textColor="#FFFFFF",
-                  color="#000000F0"
+                  color="#FFFFFF"
                 }
               },
               {
@@ -644,9 +644,9 @@ __bundle_register(
           {
             tag = "Panel",
             attributes = {
-              position = "0 -0 0",
+              position = "0 0 -6",
               rotation = "180 180 0",
-              scale = "3.5 3.5"
+              scale = "0.03 0.03"
             },
             children = {
               {

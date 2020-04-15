@@ -1,0 +1,108 @@
+<Defaults>
+  <Button onClick="onClick" fontSize="80" fontStyle="Bold" textColor="#FFFFFF" color="#000000F0" />
+  <Text fontSize="80" fontStyle="Bold" color="#A3A3A3" />
+</Defaults>
+
+<Panel position="185 -11 -15" rotation="180 180 0" height="100" width="825" scale="1 1">
+  <Button id="Create" position="185 -1650 0" fontSize="52" text="Создать" color="#000000F0"></Button>
+  <Text position="200 30 0" fontSize="45" height="100" width="600" text="Название"></Text>
+  <InputField id="Name" onEndEdit="onEndEdit" height="50" width="600" position="300 -30 -15"
+    fontSize="25" fontStyle="Bold"
+    text="Название"></InputField>
+    <InputField id="Description" lineType="MultiLineNewLine" height="400" width="800" position="200 -400 -15"
+      fontSize="25" fontStyle="Bold"
+      text="Описание"></InputField>
+  <Text position="200 -140 0" fontSize="45" height="100" width="600" text="Описанае"></Text>
+
+  <Text position="200 -650 0" fontSize="45" height="100" width="600" text="Параметры"></Text>
+
+
+<Panel id="111"  position="0 0 0" rotation="0 0 0" height="100" width="825" scale="1 1" >
+    <HorizontalLayout position="200 -1100 0"  height="900" width="800">
+    <VerticalLayout >
+    <Text fontSize="25" height="10" width="100" text="Тип"></Text>
+    <Dropdown id="Type" onValueChanged="Type">
+    <Option selected="true">Отрицательный</Option>
+    <Option>Положительный</Option>
+    <Option>Нейтральный</Option>
+    </Dropdown>
+    <Text fontSize="25" height="10" width="100" text="Вариативность"></Text>
+    <Dropdown id="Var" onValueChanged="Var">
+    <Option selected="true">Игрок</Option>
+    <Option>Союзник</Option>
+    <Option>Враг</Option>
+    <Option>Все</Option>
+    </Dropdown>
+    <Text fontSize="25" height="10" width="100" text="Примерение"></Text>
+    <Dropdown id="App" onValueChanged="App">
+    <Option selected="true">Когда угодно</Option>
+    <Option>Свой ход</Option>
+    <Option>Ход союзника</Option>
+    <Option>Ход противника</Option>
+    <Option>В начале боя</Option>
+    </Dropdown>
+    <Text fontSize="25" height="10" width="100" text="Требования"></Text>
+    <Dropdown id="Dem" onValueChanged="Dem">
+    <Option selected="true">Нету</Option>
+    <Option>Кинжал</Option>
+    <Option>Посох</Option>
+    <Option>Щит</Option>
+    </Dropdown>
+    <Text fontSize="25" height="10" width="100" text="Модификатор"></Text>
+    <Dropdown id="Mod" onValueChanged="Mod">
+    <Option selected="true">Мгновенное</Option>
+    <Option>Переодическое</Option>
+    <Option>Аура</Option>
+    </Dropdown>
+    </VerticalLayout>
+    <VerticalLayout >
+    <Text fontSize="25" height="10" width="100"  text="Сила Заклинания"></Text>
+    <InputField id="SPD" fontSize="45" onEndEdit="onEndEdit"
+      text="1.0"></InputField>
+    <Text fontSize="25" height="10" width="100" text="Переодический урон"></Text>
+    <InputField id="PPD" fontSize="45" onEndEdit="onEndEdit"
+      text="1.0"></InputField>
+    <Text fontSize="25" height="10" width="90" text="Отложеность"></Text>
+    <InputField id="Del" fontSize="45" onEndEdit="onEndEdit"
+      text="1"></InputField>
+    <Text fontSize="25" height="10" width="100" text="Дальность"></Text>
+      <InputField id="Ran" fontSize="45" onEndEdit="onEndEdit"
+        text="1"></InputField>
+    <Text fontSize="25" height="10" width="100" text="Радиус"></Text>
+    <InputField id="Rad" fontSize="45" onEndEdit="onEndEdit"
+      text="1"></InputField>
+    </VerticalLayout>
+    <VerticalLayout >
+    <Text fontSize="25" height="10" width="100" text="Стоимость"></Text>
+    <InputField id="Cos" fontSize="45" onEndEdit="onEndEdit"
+      text="1"></InputField>
+
+    <Text fontSize="25" height="10" width="100" text="Время действия"></Text>
+    <InputField id="ToA" fontSize="45" onEndEdit="onEndEdit"
+      text="1"></InputField>
+    <Text fontSize="25" height="10" width="100" text="Количество применения"></Text>
+    <InputField id="NoA" fontSize="45" onEndEdit="onEndEdit"
+      text="1"></InputField>
+
+    <Text fontSize="25" height="10" width="100" text="Перезарядка"></Text>
+    <InputField id="Cda" fontSize="45" onEndEdit="onEndEdit"
+      text="1"></InputField>
+    <Text fontSize="25" height="10" width="100" text="Школа"></Text>
+    <Dropdown id="Soc" onValueChanged="Soc">
+    <Option selected="true" >Пирокинетика</Option>
+    <Option>Криомантия</Option>
+    <Option>Воодушевление</Option>
+    <Option>Мистицызм</Option>
+    <Option>Геомантия</Option>
+    <Option>Гармония</Option>
+    <Option>Чаротворение</Option>
+    <Option>Бой</Option>
+    <Option>Ликви��ация</Option>
+    <Option>Неинство</Option>
+    <Option>Оборона</Option>
+    <Option>Стрельба</Option>
+    </Dropdown>
+    </VerticalLayout>
+</HorizontalLayout>
+</Panel>
+</Panel>

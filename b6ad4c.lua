@@ -241,7 +241,7 @@ function onClick(player, value, id)
       self.UI.setAttribute("MPpanel", "active", false)
     end
   elseif id == "MDi" then
-    print(player.steam_name, "(", Namehero, ")", " п�����тр��тил ", MPinc, " маны ")
+    print(player.steam_name, "(", Namehero, ")", " п�����тр����ил ", MPinc, " маны ")
     stats.MPC = stats.MPC - MPinc
   end
   if id == "STAEdit" then
@@ -373,7 +373,7 @@ function countItems()
       else
         totalPAT = totalPAT + PAT
       end
-      --Присваеваем значение локальной переменной общей переменной для дальнейшего ис��ользования в других скриптах
+      --Присваеваем значение локальной переменной общей переменной для дальнейшего ис��ользования в других скр��птах
       stats.PAT = totalPAT
     end
   end
@@ -411,7 +411,7 @@ function countItems()
       else
         totalMOV = totalMOV + MOV
       end
-      --П���������исваеваем значение локальной переменной общей переменной для дальнейшего использования в других скриптах
+      --П���������исваеваем значение локальной переменной общей переменной для дальнейшего использования в других с������иптах
       stats.MOV = totalMOV
     end
   end
@@ -449,7 +449,7 @@ function countItems()
       else
         totalMAS = totalMAS + MAS
       end
-      --Присваеваем значение локальной переменно�� общей переменной для дальнейшего использования в других скриптах
+      --П��исваеваем значение локальной переменно�� общей переменной для дальнейшего использования в других скриптах
       stats.MAS = totalMAS
     end
   end
